@@ -1,0 +1,220 @@
+How many tasks are there by each different status? 
+{
+    "collection": "tasks", 
+    "aggregate": [
+        { "$group": { "_id": "$status.text", "count": { "$sum": 1 } } }
+    ]
+}
+
+How many tasks exist? 
+{
+    "collection": "tasks",
+    "aggregate": [
+        { "$count": "total_tasks" }
+    ]
+}
+
+List out all users who have task status 'done' 
+{
+    "collection": "tasks",
+    "aggregate": [
+        {
+            "$lookup": {
+                "from": "users",
+                "localField": "AssigneeUserId",
+                "foreignField": "_id",
+                "as": "user_info"
+            }
+        },
+        {
+            "$unwind": "$user_info"
+        },
+        {
+            "$match": {
+                "status.text": "Done"
+            }
+        },
+        {
+            "$project": {
+                "user_info.Employee_Name": 1,
+                "status.text": 1,
+                "_id": 0
+            }
+        }
+    ]
+}
+
+Show all tasks assigned to '6571e715e5d066d39dd01b39' 
+{ "collection": "tasks", "filter": { 
+    "AssigneeUserId": "6571e715e5d066d39dd01b39" }, 
+    "projection": { "TaskName": 1, "_id": 0 } 
+}
+
+List all tasks for employee 'Shiv Joshi' 
+{
+    "collection": "tasks", 
+    "aggregate": [
+        {
+            "$lookup": {
+                "from": "users",
+                "localField": "AssigneeUserId",
+                "foreignField": "_id",
+                "as": "user_info"
+            }
+        },
+        {
+            "$unwind": "$user_info"
+        },
+        {
+            "$match": {
+                "user_info.Employee_Name": "Shiv Joshi"
+            }
+        },
+        {
+            "$project": {
+                "TaskName": 1,
+                "_id": 0
+            }
+        }
+    ]
+}
+
+Find all tasks with status "In Progress" 
+{
+    "collection": "tasks", 
+    "filter": { "status.text": "In Progress" }, 
+    "projection": { "TaskName": 1, "_id": 0 }
+}
+
+Filter out the employee whose '_id' ends with '68' 
+{
+    "collection": "users",
+    "filter": { 
+        "$expr": { 
+            "$regexMatch": { 
+                "input": { "$toString": "$_id" }, 
+                "regex": "68$" 
+            } 
+        } 
+    },
+    "projection": { "Employee_Name": 1, "_id": 1 }
+}
+
+Aggregation to Count Tasks Created on a Specific Date 
+{
+    "collection": "tasks",
+    "aggregate": [
+        {
+            "$match": {
+                "createdAt": {
+                    "$gte": { "$date": "2023-01-01T00:00:00.000Z" },
+                    "$lt": { "$date": "2024-01-01T00:00:00.000Z" }
+                }
+            }
+        },
+        {
+            "$count": "total_tasks"
+        }
+    ]
+}
+
+Query for Tasks Created on a Specific Date 
+{
+  "collection": "tasks",
+  "filter": {
+    "createdAt": {
+      "$gte": { "$date": "2025--01-01T00:00:00.000Z" },
+      "$lt": { "$date": "2025-01-01T00:00:00.000Z" }
+    }
+  },
+  "projection": { "TaskName": 1, "_id": 0 }
+}
+
+List out all the records whose project id is '6571e7195470e64b120328d5' 
+{
+    "collection": "tasks",
+    "filter": {
+        "ProjectID": "6571e7195470e64b120328d5"
+    },
+    "projection": {
+        "TaskName": 1,
+        "_id": 0
+    }
+}
+
+To find the task leader using the task name 
+{
+    "collection": "tasks",
+    "aggregate": [
+        {
+            "$match": {
+                "TaskName": "Task Name Here"
+            }
+        },
+        {
+            "$addFields": {
+                "Task_Leader": { "$toObjectId": "$Task_Leader" }
+            }
+        },
+        {
+            "$lookup": {
+                "from": "users",
+                "localField": "Task_Leader",
+                "foreignField": "_id",
+                "as": "leader_info"
+            }
+        },
+        {
+            "$unwind": "$leader_info"
+        },
+        {
+            "$project": {
+                "leader_info.Employee_Name": 1,
+                "_id": 0
+            }
+        }
+    ]
+}
+
+List all tasks under the "Development" folder in sprintArray 
+{
+    "collection": "tasks",
+    "filter": {
+        "sprintArray.folderName": "Development"
+    },
+    "projection": {
+        "TaskName": 1,
+        "_id": 0
+    }
+}
+
+Count how many tasks are there in the "Development" sprint 
+{
+    "collection": "tasks",
+    "aggregate": [
+        {
+            "$match": {
+                "sprintArray.folderName": "Development"
+            }
+        },
+        {
+            "$count": "total_tasks"
+        }
+    ]
+}
+
+Group tasks by all different folderName values in sprintArray 
+{
+    "collection": "tasks",
+    "aggregate": [
+        {
+            "$unwind": "$sprintArray"
+        },
+        {
+            "$group": {
+                "_id": "$sprintArray.folderName",
+                "task_count": { "$sum": 1 }
+            }
+        }
+    ]
+}

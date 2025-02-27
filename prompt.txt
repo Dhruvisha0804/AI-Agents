@@ -1,0 +1,1123 @@
+users collection sample
+
+{
+  "_id": {
+    "$oid": "6571e71590622593f7e24f23"
+  },
+  "legacyId": "1NY9PYJCUURu357sR8ws28n92El2",
+  "Employee_Email": "timothy@cinemano.com.au",
+  "Employee_FName": "Timothy",
+  "Employee_LName": "Nguyen",
+  "Employee_Name": "Timothy Nguyen",
+  "Time_Format": "12",
+  "isActive": true,
+  "isOnline": true,
+  "verificationToken": "",
+  "verificationTokenTime": {
+    "$date": "1970-01-20T10:12:16.982Z"
+  },
+  "AssignCompany": [
+    "VzxkxNEujufxnK3aIJHy"
+  ],
+  "Employee_profileImageURL": "",
+  "webTokens": [],
+  "forgotPasswordTokenTime": {
+    "$date": "2023-12-07T15:39:01.180Z"
+  },
+  "lastActive": {
+    "$date": "2023-12-07T15:39:01.180Z"
+  },
+  "isEmailVerified": true,
+  "updatedAt": {
+    "$date": "2023-08-28T18:11:21.000Z"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2023-12-07T15:39:02.443Z"
+  }
+}
+
+
+
+****************************************
+
+
+
+tasks collection sample
+
+{
+  "_id": {
+    "$oid": "6571e71c5470e64b12032972"
+  },
+  "legacyId": "fazFKZEcWAl04djXpdII",
+  "TaskName": "Add Steps in the Question Preview",
+  "TaskKey": "AFCQBOSS-55",
+  "AssigneeUserId": [
+    "6571e715e5d066d39dd01b39"
+  ],
+  "watchers": [
+    "6571e715e5d066d39dd01b39"
+  ],
+  "dueDateDeadLine": [],
+  "TaskType": "task",
+  "TaskTypeKey": 0,
+  "ParentTaskId": "",
+  "ProjectID": {
+    "$oid": "6571e7195470e64b120328d5"
+  },
+  "CompanyId": {
+    "$oid": "6571e7165470e64b12032734"
+  },
+  "status": {
+    "text": "Done",
+    "key": 6,
+    "type": "done"
+  },
+  "isParentTask": true,
+  "Task_Leader": "6571e715e5d066d39dd01b39",
+  "sprintArray": {
+    "folderId": "9ylMOm",
+    "folderName": "Development",
+    "id": "JLKpCF",
+    "name": "Admin",
+    "value": "ADMIN"
+  },
+  "Task_Priority": "MEDIUM",
+  "deletedStatusKey": 8,
+  "sprintId": {
+    "$oid": "661e42344393294bb3dd9a08"
+  },
+  "queueListArray": [],
+  "attachments": [],
+  "checklistArray": [],
+  "tagsArray": [],
+  "favouriteTasks": [],
+  "rawDescription": "Add \"Step\" word in the Step counter",
+  "description": "<p>Add \"Step\" word in the Step counter</p>",
+  "statusType": "done",
+  "statusKey": 6,
+  "createdAt": {
+    "$date": "2023-12-06T04:55:33.432Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-28T13:14:22.605Z"
+  },
+  "__v": 0,
+  "folderObjId": {
+    "$oid": "661e42324393294bb3dd9a02"
+  }
+}
+
+
+
+****************************************
+
+
+
+projects collection sample
+
+{
+  "_id": {
+    "$oid": "6571e7195470e64b120328db"
+  },
+  "legacyId": "Njqq9sEybqUVtlrwET2z",
+  "AssigneeUserId": [
+    "6571e715e5d066d39dd01ae2",
+    "6571e715e5d066d39dd01b39",
+    "6571e71510b21a03ef44f3f3",
+    "6571e715beb110e308a2a588",
+    "6571e71510b21a03ef44f3e7"
+  ],
+  "CompanyId": "6571e7165470e64b12032734",
+  "LeadUserId": [
+    "6571e715e5d066d39dd01ae2"
+  ],
+  "ProjectCategory": "In House",
+  "ProjectCode": "AHM",
+  "ProjectCurrency": {
+    "symbol": "₹",
+    "name_plural": "Indian rupees",
+    "code": "INR",
+    "symbol_native": "টকা",
+    "decimal_digits": 2,
+    "name": "Indian Rupee",
+    "rounding": 0,
+    "id": "6571e7185470e64b120328b2"
+  },
+  "ProjectName": "Alian Hr module",
+  "ProjectRequiredComponent": [
+    {
+      "activeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2FSELECTED_LIST.svg?alt=media&token=f8fb2539-939f-4357-a6ef-95423b5d998d",
+      "createdAt": {
+        "seconds": 1675156452,
+        "nanoseconds": 178000000
+      },
+      "sortIndex": 1,
+      "keyName": "ProjectListView",
+      "icon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Flistrequiredview.png?alt=media&token=80163486-00e0-40b8-a415-4d359de406c2",
+      "name": "List",
+      "viewStatus": true,
+      "value": "list",
+      "setAsDefault": true,
+      "updatedAt": {
+        "seconds": 1675156452,
+        "nanoseconds": 178000000
+      },
+      "_id": "6571e7175470e64b12032859"
+    },
+    {
+      "activeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2FSELECTED_PROJECT-DETAIL.svg?alt=media&token=19cdbb09-237b-4fa9-bad5-e74d8f0c5e75",
+      "createdAt": {
+        "seconds": 1675156452,
+        "nanoseconds": 181000000
+      },
+      "sortIndex": 3,
+      "keyName": "ProjectDetail",
+      "icon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Fprojectdeatilrequiredview.png?alt=media&token=8bba4ffe-2799-4e64-8c54-ce89b4da28b3",
+      "name": "Project Details",
+      "value": "projectDetails",
+      "isChecked": true,
+      "viewStatus": true,
+      "setAsDefault": false,
+      "updatedAt": {
+        "seconds": 1675156452,
+        "nanoseconds": 181000000
+      },
+      "_id": "6571e7175470e64b12032857"
+    },
+    {
+      "activeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2FSELECTED_ACTIVITY.svg?alt=media&token=ec43856a-e338-4479-bbbb-919416319c10",
+      "createdAt": {
+        "seconds": 1675156452,
+        "nanoseconds": 185000000
+      },
+      "sortIndex": 6,
+      "icon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2FActivityrequiredview.png?alt=media&token=2414de5c-23e9-48f2-afc7-2153063655cc",
+      "keyName": "ActivityLog",
+      "name": "Activity",
+      "isChecked": true,
+      "value": "activitylog",
+      "viewStatus": true,
+      "updatedAt": {
+        "seconds": 1675156452,
+        "nanoseconds": 185000000
+      },
+      "setAsDefault": false,
+      "_id": "6571e7175470e64b12032854"
+    },
+    {
+      "activeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2FSELECTED_COMMENTS.svg?alt=media&token=f0dfc328-0685-4e5e-8df6-449010e2a187",
+      "createdAt": "063810753252.186000000",
+      "sortIndex": 4,
+      "name": "Comments",
+      "keyName": "Comments",
+      "icon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Fcommentrequiredview.png?alt=media&token=334db1d7-b8a4-4e6e-a99a-704ce79a619b",
+      "value": "comments",
+      "viewStatus": true,
+      "isChecked": true,
+      "setAsDefault": false,
+      "updatedAt": "063810753252.186000000",
+      "_id": "6571e7175470e64b12032856"
+    }
+  ],
+  "ProjectRequiredDefaultComponent": "ProjectListView",
+  "ProjectType": "Fix",
+  "TaskTypeTemplateId": "8dYIxkEQdWf922pTiGFJ",
+  "TemplateId": "",
+  "TemplateTaskStatusId": "",
+  "apps": [
+    {
+      "createdAt": {
+        "_nanoseconds": 195000000,
+        "_seconds": 1675156452
+      },
+      "sortIndex": 7,
+      "name": "Time Tracking",
+      "beforeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Ftimetracking.png?alt=media&token=770ca5aa-b7ff-43e6-9ad3-c3a61dd8e0d4",
+      "appStatus": true,
+      "afterIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Ftimevalueblue.png?alt=media&token=a8781faf-d248-4054-b2ec-a1d589ad2833",
+      "key": "TimeTracking",
+      "updatedAt": {
+        "_nanoseconds": 195000000,
+        "_seconds": 1675156452
+      },
+      "_id": "6571e7175470e64b12032847"
+    },
+    {
+      "createdAt": {
+        "_nanoseconds": 195000000,
+        "_seconds": 1675156452
+      },
+      "sortIndex": 4,
+      "name": "Milestones",
+      "beforeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Fcheckflaggrey.png?alt=media&token=2dfa1fea-3fcc-4c06-964f-c0a17eee9953",
+      "appStatus": true,
+      "afterIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Fcheckflagblue.png?alt=media&token=4d034b73-9ede-4dd2-9420-ab2428ddb266",
+      "key": "Milestones",
+      "updatedAt": {
+        "_nanoseconds": 195000000,
+        "_seconds": 1675156452
+      },
+      "_id": "6571e7175470e64b1203284a"
+    },
+    {
+      "createdAt": {
+        "_nanoseconds": 197000000,
+        "_seconds": 1675156452
+      },
+      "sortIndex": 8,
+      "name": "Incomplete Warning",
+      "beforeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Fcheckgrey.png?alt=media&token=593bae90-c276-4770-a88d-d2f3a284ef82",
+      "appStatus": false,
+      "afterIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2FcheckBlue.png?alt=media&token=4278e670-1946-4d47-b1fb-bf7ef9cc94fb",
+      "key": "IncompleteWarning",
+      "updatedAt": {
+        "_nanoseconds": 197000000,
+        "_seconds": 1675156452
+      },
+      "_id": "6571e7175470e64b12032846"
+    },
+    {
+      "createdAt": {
+        "_nanoseconds": 194000000,
+        "_seconds": 1675156452
+      },
+      "sortIndex": 1,
+      "name": "Priority",
+      "beforeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Fflaggrey.png?alt=media&token=daacdb59-13a6-4554-82e5-77fb0f87ee72",
+      "appStatus": true,
+      "afterIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Fflagblue.png?alt=media&token=700e1b95-0b5f-47a6-9f3e-5ecd6a643d7e",
+      "key": "Priority",
+      "updatedAt": {
+        "_nanoseconds": 194000000,
+        "_seconds": 1675156452
+      },
+      "_id": "6571e7175470e64b1203284d"
+    },
+    {
+      "createdAt": {
+        "_nanoseconds": 188000000,
+        "_seconds": 1675156452
+      },
+      "sortIndex": 5,
+      "name": "Tags",
+      "beforeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Ftagsgrey.png?alt=media&token=71bfbc04-cd90-4b2c-a966-0d12cbc4eff2",
+      "appStatus": true,
+      "afterIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Ftagsblue.png?alt=media&token=c68089d0-dcc1-49a0-86d4-7409ccb60701",
+      "key": "tags",
+      "updatedAt": {
+        "_nanoseconds": 188000000,
+        "_seconds": 1675156452
+      },
+      "_id": "6571e7175470e64b12032849"
+    },
+    {
+      "createdAt": {
+        "_nanoseconds": 463000000,
+        "_seconds": 1675156452
+      },
+      "sortIndex": 3,
+      "name": "Time Estimate",
+      "beforeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Ftimegrey.png?alt=media&token=04962a07-7b98-47ce-b45d-0231cee6573e",
+      "appStatus": true,
+      "afterIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2FtimeBlue.png?alt=media&token=1d03956e-1e42-4e32-a78f-551d22735f2d",
+      "key": "TimeEstimates",
+      "updatedAt": {
+        "_nanoseconds": 463000000,
+        "_seconds": 1675156452
+      },
+      "_id": "6571e7175470e64b1203284b"
+    },
+    {
+      "createdAt": {
+        "_nanoseconds": 190000000,
+        "_seconds": 1675156452
+      },
+      "sortIndex": 2,
+      "name": "Multiple Assignees",
+      "beforeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Fmutiplegrey.png?alt=media&token=17cf1d12-345f-4bf6-9a8f-0e253b54ce88",
+      "appStatus": true,
+      "afterIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Fmutipleblue.png?alt=media&token=c97e5534-86d0-4a12-854f-744d19614589",
+      "key": "MultipleAssignees",
+      "updatedAt": {
+        "_nanoseconds": 190000000,
+        "_seconds": 1675156452
+      },
+      "_id": "6571e7175470e64b1203284c"
+    },
+    {
+      "createdAt": {
+        "_nanoseconds": 191000000,
+        "_seconds": 1675156452
+      },
+      "sortIndex": 6,
+      "name": "Custom Fields",
+      "beforeIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Feditgrey.png?alt=media&token=05699954-ba81-4502-9784-72d7fd404a5f",
+      "appStatus": false,
+      "afterIcon": "https://firebasestorage.googleapis.com/v0/b/erpproject-1addc.appspot.com/o/ProjectDefaultIcon%2Feditblue.png?alt=media&token=4a994692-d811-456c-8a3f-e9c47770883a",
+      "key": "CustomFields",
+      "updatedAt": {
+        "_nanoseconds": 191000000,
+        "_seconds": 1675156452
+      },
+      "_id": "6571e7175470e64b12032848"
+    },
+    {
+      "name": "AI",
+      "key": "AI",
+      "beforeIcon": "setting-icons/apps/aiGrey.png",
+      "afterIcon": "setting-icons/apps/aiBlue.png",
+      "appStatus": true,
+      "sortIndex": 9
+    }
+  ],
+  "checklistArray": [
+    {
+      "AssigneeUserId": [],
+      "name": "Checklist",
+      "id": "wYAE4s",
+      "isChecked": false
+    }
+  ],
+  "attachments": [
+    {
+      "userDesignation": null,
+      "createdAt": {
+        "seconds": 1688722596,
+        "nanoseconds": 987000000
+      },
+      "extension": "xlsx",
+      "filename": "1149264672442_April2023cosec.xlsx",
+      "size": 98127,
+      "id": "KD22JfPJd4dUpOTGX",
+      "userId": "6571e7152cb51f00ebc531a9",
+      "url": "https://firebasestorage.googleapis.com/v0/b/alian-hub-app-1dae2.appspot.com/o/ZoHj8h99fBfNMhw0Dqv9%2Fprojects%2FNjqq9sEybqUVtlrwET2z%2F1149264672442_April2023cosec.xlsx?alt=media&token=53b26db9-510e-4c5c-a878-36411038a8c6"
+    },
+    {
+      "userDesignation": null,
+      "createdAt": {
+        "seconds": 1688722629,
+        "nanoseconds": 269000000
+      },
+      "extension": "txt",
+      "filename": "594183485799_june ERP.txt",
+      "size": 8693,
+      "id": "aWWKosD7mvjscAKlX",
+      "userId": "6571e7152cb51f00ebc531a9",
+      "url": "https://firebasestorage.googleapis.com/v0/b/alian-hub-app-1dae2.appspot.com/o/ZoHj8h99fBfNMhw0Dqv9%2Fprojects%2FNjqq9sEybqUVtlrwET2z%2F594183485799_june%20ERP.txt?alt=media&token=cb16c73a-8ec5-44a0-a271-27f969740355"
+    },
+    {
+      "userDesignation": null,
+      "createdAt": {
+        "seconds": 1688722957,
+        "nanoseconds": 279000000
+      },
+      "extension": "xlsx",
+      "filename": "366979570147_Employee_Data_Sheet_for_ERP_R3 - Copy.xlsx",
+      "size": 20063,
+      "id": "hj1lg6ls3HKrpQoFM",
+      "userId": "6571e7152cb51f00ebc531a9",
+      "url": "https://firebasestorage.googleapis.com/v0/b/alian-hub-app-1dae2.appspot.com/o/ZoHj8h99fBfNMhw0Dqv9%2Fprojects%2FNjqq9sEybqUVtlrwET2z%2F366979570147_Employee_Data_Sheet_for_ERP_R3%20-%20Copy.xlsx?alt=media&token=9e60f20b-81e0-4ba4-89e6-103d8c0a02d5"
+    },
+    {
+      "userDesignation": null,
+      "createdAt": "063824321646.644000000",
+      "extension": "xlsx",
+      "filename": "1428095388812_rptDAttendanceReg_June_2023 (1).xlsx",
+      "size": 147341,
+      "id": "li88F6xTejkXCC0Ub",
+      "userId": "6571e7152cb51f00ebc531a9",
+      "url": "https://firebasestorage.googleapis.com/v0/b/alian-hub-app-1dae2.appspot.com/o/ZoHj8h99fBfNMhw0Dqv9%2Fprojects%2FNjqq9sEybqUVtlrwET2z%2F1428095388812_rptDAttendanceReg_June_2023%20(1).xlsx?alt=media&token=d787931b-c9e0-488e-a344-5b13a66bc52b"
+    }
+  ],
+  "description": "<p>https://hr-dev.aliansoftware.net/</p><p><br></p><p>admin:</p><p>login id: admin@aliansoftware.com</p><p>pass: admin@123</p><p><br></p><p><br></p><p>from below text file is only for june month salary calculation.(from june month every employee has access to Cosec)</p><p>cosec excel sheets are to be uploaded after generating salary sheet.</p><p>excel named \"Employee_Data_Sheet_for_ERP_R3 - Copy\" is for adding bulk employee when multiple employee joins.</p>",
+  "dueDateDeadLine": [],
+  "isPrivateSpace": true,
+  "lastTaskId": 114,
+  "milestoneAmount": 0,
+  "projectCreatedBy": "6571e71690622593f7e24f93",
+  "projectIcon": {
+    "data": "#28C371",
+    "type": "color"
+  },
+  "projectStatusData": [
+    {
+      "default": true,
+      "backgroundColor": "#E3E1FC35",
+      "editColor": false,
+      "isEditable": false,
+      "isDeleted": false,
+      "name": "Open",
+      "type": "active",
+      "value": "open",
+      "textColor": "#7367F0"
+    },
+    {
+      "default": false,
+      "backgroundColor": "#75e61935",
+      "editColor": false,
+      "isDeleted": false,
+      "isEditable": false,
+      "name": "In Design",
+      "type": "active",
+      "value": "in_design",
+      "textColor": "#75e619"
+    },
+    {
+      "default": false,
+      "backgroundColor": "#B54DC535",
+      "editColor": false,
+      "isDeleted": false,
+      "isEditable": false,
+      "name": "In Development",
+      "type": "active",
+      "value": "in_development",
+      "textColor": "#B54DC5"
+    },
+    {
+      "default": false,
+      "backgroundColor": "#2b00ff35",
+      "editColor": false,
+      "isDeleted": false,
+      "isEditable": false,
+      "name": "In Testing",
+      "type": "active",
+      "value": "in_testing",
+      "textColor": "#2b00ff"
+    },
+    {
+      "default": false,
+      "backgroundColor": "#00943435",
+      "editColor": false,
+      "isDeleted": false,
+      "isEditable": false,
+      "name": "Submitted To Client",
+      "type": "active",
+      "value": "submitted_to_client",
+      "textColor": "#009434"
+    },
+    {
+      "default": false,
+      "backgroundColor": "#ff000035",
+      "editColor": false,
+      "isDeleted": false,
+      "isEditable": false,
+      "name": "On Hold From Client",
+      "type": "active",
+      "value": "on_hold_from_client",
+      "textColor": "#ff0000"
+    },
+    {
+      "backgroundColor": "#ED514535",
+      "default": true,
+      "editColor": false,
+      "isEditable": false,
+      "isDeleted": false,
+      "name": "Close",
+      "type": "close",
+      "value": "close",
+      "textColor": "#ED5145"
+    }
+  ],
+  "sprintsObj": {
+    "qLHsux": {
+      "isDeleted": false,
+      "isFolderSprint": false,
+      "name": "discussion and meeting",
+      "markAsStar": false,
+      "id": "qLHsux",
+      "value": "DISCUSSION_AND_MEETING",
+      "archiveTaskCount": 0,
+      "createdAt": {
+        "$date": "2023-06-19T13:20:24.000Z"
+      },
+      "tasks": 2
+    }
+  },
+  "sprintsfolders": {
+    "QSZcMM": {
+      "name": "HR Module Development",
+      "folderId": "QSZcMM",
+      "sprintsArray": [
+        {
+          "createdAt": {
+            "_nanoseconds": 0,
+            "_seconds": 1686561643
+          },
+          "isDeleted": false,
+          "isFolderSprint": true,
+          "name": "Development Phase 1",
+          "markAsStar": false,
+          "id": "EFw0RJ",
+          "folderName": "HR Module Development",
+          "value": "DEVELOPMENT_PHASE_1",
+          "folderId": "QSZcMM"
+        }
+      ],
+      "sprintsObj": {
+        "EFw0RJ": {
+          "isDeleted": false,
+          "isFolderSprint": true,
+          "name": "Development Phase 1",
+          "markAsStar": false,
+          "folderName": "HR Module Development",
+          "id": "EFw0RJ",
+          "value": "DEVELOPMENT_PHASE_1",
+          "folderId": "QSZcMM",
+          "archiveTaskCount": 0,
+          "createdAt": {
+            "$date": "2023-06-12T09:20:43.000Z"
+          },
+          "tasks": 78
+        },
+        "fDc7Kp": {
+          "createdAt": {
+            "$date": "2023-08-07T03:44:18.000Z"
+          },
+          "private": false,
+          "isDeleted": false,
+          "isFolderSprint": true,
+          "name": "Development phase 2",
+          "markAsStar": false,
+          "id": "fDc7Kp",
+          "folderName": "HR Module Development",
+          "value": "DEVELOPMENT_PHASE_2",
+          "folderId": "QSZcMM",
+          "watchers": [
+            "AKlmSsQL8HO2V963rBZHQxJtFY53"
+          ],
+          "tasks": 27
+        }
+      }
+    }
+  },
+  "status": "in_development",
+  "statusType": "active",
+  "taskStatusData": [
+    {
+      "statusImage": "",
+      "bgColor": "#ff960035",
+      "isDeleted": true,
+      "name": "To Do",
+      "type": "default_active",
+      "textColor": "#ff9600",
+      "value": "to_do",
+      "key": 1
+    },
+    {
+      "statusImage": "",
+      "bgColor": "#6473e835",
+      "isDeleted": true,
+      "name": "In Progress",
+      "type": "active",
+      "textColor": "#6473e8",
+      "value": "in_progress",
+      "key": 3
+    },
+    {
+      "statusImage": "",
+      "bgColor": "#9759c035",
+      "isDeleted": true,
+      "name": "In Review",
+      "type": "active",
+      "textColor": "#9759c0",
+      "value": "in_review",
+      "key": 4
+    },
+    {
+      "statusImage": "",
+      "bgColor": "#ec414135",
+      "isDeleted": true,
+      "name": "Backlog",
+      "type": "active",
+      "textColor": "#ec4141",
+      "value": "backlog",
+      "key": 5
+    },
+    {
+      "statusImage": "",
+      "bgColor": "#cedb1f35",
+      "isDeleted": true,
+      "name": "On Hold",
+      "type": "active",
+      "textColor": "#cedb1f",
+      "value": "on_hold",
+      "key": 7
+    },
+    {
+      "statusImage": "",
+      "bgColor": "#55eb3735",
+      "isDeleted": true,
+      "name": "Ready For Production",
+      "type": "active",
+      "textColor": "#55eb37",
+      "value": "ready_for_production",
+      "key": 8
+    },
+    {
+      "statusImage": "",
+      "bgColor": "#24c11035",
+      "isDeleted": true,
+      "name": "Done",
+      "type": "done",
+      "textColor": "#24c110",
+      "value": "done",
+      "key": 6
+    },
+    {
+      "statusImage": "",
+      "bgColor": "#6BC95035",
+      "isDeleted": true,
+      "name": "Complete",
+      "type": "close",
+      "textColor": "#6BC950",
+      "value": "complete",
+      "key": 2
+    }
+  ],
+  "taskTypeCounts": [
+    {
+      "taskCount": 77,
+      "default": true,
+      "isEditable": false,
+      "isDeleted": false,
+      "isAddNewStatus": false,
+      "name": "Task",
+      "taskImage": "setting/task_type/task.png",
+      "assignAsSubtask": false,
+      "value": "task",
+      "key": 0,
+      "assignAsTask": false
+    },
+    {
+      "taskCount": 20,
+      "isEditable": false,
+      "isDeleted": false,
+      "isAddNewStatus": false,
+      "name": "Sub Task",
+      "taskImage": "setting/task_type/subtask.png",
+      "assignAsSubtask": false,
+      "value": "sub_task",
+      "key": 1,
+      "assignAsTask": false
+    },
+    {
+      "taskCount": 16,
+      "isEditable": false,
+      "isDeleted": false,
+      "isAddNewStatus": false,
+      "name": "Bug",
+      "taskImage": "setting/task_type/bug.png",
+      "assignAsSubtask": false,
+      "value": "bug",
+      "key": 2,
+      "assignAsTask": false
+    }
+  ],
+  "deletedStatusKey": 0,
+  "createdAt": {
+    "$date": "2023-12-07T15:39:05.922Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-22T12:21:02.133Z"
+  },
+  "__v": 0,
+  "lastProjectActivity": 1728996241,
+  "userActivity": {},
+  "viewColumn": [
+    {
+      "label": "Chat",
+      "key": "commentCounts",
+      "postition": 0,
+      "show": true
+    },
+    {
+      "label": "Assignee",
+      "key": "AssigneeUserId",
+      "funcPermission": "task.task_assignee",
+      "postition": 1,
+      "show": true
+    },
+    {
+      "label": "Due Date",
+      "key": "DueDate",
+      "funcPermission": "task.task_due_date",
+      "postition": 2,
+      "show": true
+    },
+    {
+      "label": "Priority",
+      "key": "Task_Priority",
+      "funcPermission": "task.task_priority",
+      "appPermission": "Priority",
+      "postition": 3,
+      "show": true
+    },
+    {
+      "label": "Key",
+      "key": "TaskKey",
+      "postition": 4,
+      "show": true
+    },
+    {
+      "label": "CreatedDate",
+      "key": "created_date",
+      "postition": 5,
+      "show": true
+    },
+    {
+      "label": "CreatedBy",
+      "key": "created_by",
+      "postition": 6,
+      "show": true
+    }
+  ],
+  "watchers": {}
+}
+
+
+
+****************************************
+
+
+
+1. LLAMA
+Prompt - with selected fields only.
+
+You are an expert in converting English questions into MongoDB queries!
+    The database is named 'task_demo' and contains two collections: 'tasks' and 'users'.
+    The 'tasks' collection has fields: AssigneeUserId, TaskName, Status (embedded object with text, key, and type), ProjectID, Task_Priority, CreatedAt, etc.
+    The 'users' collection has fields: _id, Employee_FName, Employee_LName, Employee_Name, createdAt, etc.
+    In both collections, the '_id' from 'users' and 'AssigneeUserId' from 'tasks' are the same, and they need to be joined for certain queries.
+
+    **Important Rule**: Always reference the `status.text` field when filtering by task status (e.g., `status.text: "Done"`).
+    
+    **Additional Rule**: 
+    - When you need to filter tasks or query simple fields, you can use the `filter` field.
+    - If the query includes dates, use the **"$date"** format (e.g., `{"$date": "YYYY-MM-DDTHH:MM:SS.sssZ"}`) to represent date fields in queries.
+    - If the query requires aggregation, **do not include a `filter` field**. Instead, only include the aggregation pipeline. For example:
+
+    - "How many tasks are there by each different status?" → 
+    {
+        "collection": "tasks", 
+        "aggregate": [
+            { "$group": { "_id": "$status.text", "count": { "$sum": 1 } } }
+        ]
+    }
+
+    - "How many tasks exist?" → { "collection": "tasks", "filter": {}, "count_documents": true }
+    
+    - "List users who have task status 'done'" → {
+        "collection": "tasks", 
+        "filter": { "status.text": "Done" }, 
+        "lookup": {
+            "from": "users", 
+            "localField": "AssigneeUserId", 
+            "foreignField": "_id", 
+            "as": "user_info"
+        },
+        "projection": { "user_info.Employee_FName": 1, "user_info.Employee_LName": 1, "_id": 0 }
+    }
+
+    - "Show all tasks assigned to '6571e715e5d066d39dd01b39'" → 
+    { "collection": "tasks", "filter": { 
+        "AssigneeUserId": "6571e715e5d066d39dd01b39" }, 
+        "projection": { "TaskName": 1, "_id": 0 } 
+    }
+
+    - "List all tasks for employee 'Shiv Joshi'" → {
+        "collection": "tasks", 
+        "aggregate": [
+            {
+                "$lookup": {
+                    "from": "users",
+                    "localField": "AssigneeUserId",
+                    "foreignField": "_id",
+                    "as": "user_info"
+                }
+            },
+            {
+                "$unwind": "$user_info"
+            },
+            {
+                "$match": {
+                    "user_info.Employee_Name": "Shiv Joshi"
+                }
+            },
+            {
+                "$project": {
+                    "TaskName": 1,
+                    "_id": 0
+                }
+            }
+        ]
+    }
+
+    - "List tasks created after a specific day" → 
+        {
+            "collection": "tasks",
+            "filter": { "createdAt": { "$gt": ISODate("2025-02-20T00:00:00.000Z") } },
+            "projection": { "TaskName": 1, "_id": 0 }
+        }
+
+
+
+    **Return only valid JSON queries without extra formatting.**
+
+
+
+
+
+
+2. LLM + LangChain + OpenAI(ChatGPT-4)
+Prompt - with selected fields only.
+
+you are a very intelligent AI assitasnt who is expert in identifying relevant questions fro user
+from user and converting into nosql mongodb agggregation pipeline query.
+Note: You have to just return the query as to use in agggregation pipeline nothing else. Don't return any other thing
+Please use the below schema to write the mongodb queries , dont use any other queries.
+schema:
+the mentioned mogbodb collection talks about listing for an accommodation on Airbnb. The schema for this document represents the structure of the data, describing various properties related to the listing, host, reviews, location, and additional features. 
+your job is to get python code for the user question
+
+***users Collection Schema***
+
+The users collection stores information about employees in the system. Each document in this collection contains the following fields:
+
+_id (ObjectId): A unique identifier for the user document.
+Example: "6571e71590622593f7e24f23"
+
+legacyId (String): A unique identifier used in legacy systems.
+Example: "1NY9PYJCUURu357sR8ws28n92El2"
+
+Employee_Email (String): The email address of the user.
+Example: "timothy@cinemano.com.au"
+
+Employee_FName (String): The user's first name.
+Example: "Timothy"
+
+Employee_LName (String): The user's last name.
+Example: "Nguyen"
+
+Employee_Name (String): The full name of the user (concatenation of first and last name).
+Example: "Timothy Nguyen"
+
+Time_Format (String): The time format preference for the user.
+Example: "12"
+
+isActive (Boolean): Indicates whether the user is currently active.
+Example: true
+
+isOnline (Boolean): Indicates whether the user is online.
+Example: true
+
+verificationToken (String): A token used for email verification.
+Example: "" (empty)
+
+verificationTokenTime (Date): The time when the verification token was generated.
+Example: "1970-01-20T10:12:16.982Z"
+
+AssignCompany (Array[String]): An array of company IDs the user is assigned to.
+Example: ["VzxkxNEujufxnK3aIJHy"]
+
+Employee_profileImageURL (String): The URL of the user's profile image.
+Example: "" (empty)
+
+webTokens (Array[String]): An array of web tokens associated with the user.
+Example: [] (empty)
+
+forgotPasswordTokenTime (Date): The time when the forgot password token was generated.
+Example: "2023-12-07T15:39:01.180Z"
+
+lastActive (Date): The last time the user was active.
+Example: "2023-12-07T15:39:01.180Z"
+
+isEmailVerified (Boolean): Indicates whether the user's email is verified.
+Example: true
+
+updatedAt (Date): The last time the user document was updated.
+Example: "2023-08-28T18:11:21.000Z"
+
+createdAt (Date): The time when the user document was created.
+Example: "2023-12-07T15:39:02.443Z"
+
+__v (Number): A version key used by MongoDB for internal purposes.
+Example: 0
+
+***tasks Collection Schema***
+
+The tasks collection stores information about tasks assigned to users in the system. Each document in this collection contains the following fields:
+
+_id (ObjectId): A unique identifier for the task document.
+Example: "6571e71c5470e64b12032972"
+
+legacyId (String): A unique identifier used in legacy systems.
+Example: "fazFKZEcWAl04djXpdII"
+
+TaskName (String): The name of the task.
+Example: "Add Steps in the Question Preview"
+
+TaskKey (String): A unique key assigned to the task.
+Example: "AFCQBOSS-55"
+
+AssigneeUserId (Array[ObjectId]): An array of user IDs who are assigned to the task. These are references to documents in the users collection.
+Example: ["6571e715e5d066d39dd01b39"]
+
+watchers (Array[ObjectId]): An array of user IDs who are watching the task. These are references to documents in the users collection.
+Example: ["6571e715e5d066d39dd01b39"]
+
+dueDateDeadLine (Array[String]): An array containing information about the task’s deadlines.
+Example: [] (empty)
+
+TaskType (String): The type of task.
+Example: "task"
+
+TaskTypeKey (Number): A key used for categorizing the type of task.
+Example: 0
+
+ParentTaskId (String): The ID of the parent task if the task is a sub-task.
+Example: "" (empty)
+
+ProjectID (ObjectId): The ID of the project this task belongs to.
+Example: "6571e7195470e64b120328d5"
+
+CompanyId (ObjectId): The ID of the company this task is associated with.
+Example: "6571e7165470e64b12032734"
+
+status (Object): An object containing information about the task’s status.
+text (String): The status text (e.g., "Done")
+key (Number): A key representing the status
+type (String): The type of status (e.g., "done")
+Example: { "text": "Done", "key": 6, "type": "done" }
+
+isParentTask (Boolean): A flag indicating whether the task is a parent task.
+Example: true
+
+Task_Leader (ObjectId): The user ID of the task leader.
+Example: "6571e715e5d066d39dd01b39"
+
+sprintArray (Object): Information about the sprint this task belongs to.
+folderId (String): ID of the folder in the sprint.
+folderName (String): Name of the folder.
+id (String): The ID of the sprint.
+name (String): The name of the sprint.
+value (String): The value representing the sprint.
+Example: { "folderId": "9ylMOm", "folderName": "Development", "id": "JLKpCF", "name": "Admin", "value": "ADMIN" }
+
+Task_Priority (String): The priority of the task (e.g., "MEDIUM")
+Example: "MEDIUM"
+
+deletedStatusKey (Number): A key representing the deleted status of the task.
+Example: 8
+
+sprintId (ObjectId): The ID of the sprint associated with the task.
+Example: "661e42344393294bb3dd9a08"
+
+queueListArray (Array[Object]): An array containing the queue list information related to the task.
+Example: [] (empty)
+
+attachments (Array[Object]): An array of file attachments associated with the task.
+Example: [] (empty)
+
+checklistArray (Array[Object]): An array of checklist items associated with the task.
+Example: [] (empty)
+
+tagsArray (Array[String]): An array of tags associated with the task.
+Example: [] (empty)
+
+favouriteTasks (Array[ObjectId]): An array of favorite task IDs.
+Example: [] (empty)
+
+subTasks (Number): The number of sub-tasks associated with this task.
+Example: 4
+
+rawDescription (String): A raw version of the task description (unformatted).
+Example: "1. Button color is still not correct..."
+
+description (String): The task description in HTML format.
+Example: "<p>1. Button color is still not correct...</p>"
+
+statusType (String): The type of status (e.g., "done")
+Example: "done"
+
+startDate (Date): The start date of the task.
+Example: "2023-12-05T05:32:00.000Z"
+
+statusKey (Number): A key representing the task’s status.
+Example: 6
+
+createdAt (Date): The time when the task document was created.
+Example: "2023-12-05T05:31:58.105Z"
+
+updatedAt (Date): The last time the task document was updated.
+Example: "2025-01-28T13:14:22.605Z"
+
+__v (Number): A version key used by MongoDB for internal purposes.
+Example: 0
+
+folderObjId (ObjectId): The ID of the folder this task belongs to.
+Example: "661e42324393294bb3dd9a02"
+
+***Relationship Between users and tasks***
+
+Each task can have one or more assignees, represented by AssigneeUserId in the tasks collection. This field stores an array of references to the _id of users in the users collection.
+Users can be assigned multiple tasks, as seen in the AssigneeUserId field of the tasks collection.
+
+This schema provides a comprehensive view of the data structure for an task_demo database in MongoDB with two major collections 'users' and 'tasks', 
+including nested and embedded data structures that add depth and detail to the document.
+use the below sample_examples to generate your queries perfectly
+sample_example:
+
+Below are several sample user questions related to the MongoDB document provided, 
+and the corresponding MongoDB aggregation pipeline queries that can be used to fetch the desired data.
+Use them wisely.
+
+sample_question: {sample}
+As an expert you must use them whenever required.
+Note: You have to just return the query nothing else. Don't return any additional text with the query.Please follow this strictly
+input:{question}
+output:
+
+
+
+
+
+3. LLM + LangChain + OpenAI(ChatGPT-4)
+Updated prompt - with selected fields only.
+
+
+You are an expert in converting English questions into MongoDB queries!
+The database is named 'task_demo' and contains two collections: 'tasks' and 'users'.
+including nested and embedded data structures that add depth and detail to the document.
+The 'tasks' collection has fields: AssigneeUserId, TaskName, Status (embedded object with text, key, and type), ProjectID, Task_Priority, CreatedAt, etc.
+The 'users' collection has fields: _id, Employee_FName, Employee_LName, Employee_Name, createdAt, etc.
+
+**Important Rule**: Always reference the `status.text` field when filtering by task status (e.g., `status.text: "Done"`).
+
+**Additional Rule**: 
+- When you need to filter tasks or query simple fields, you can use the `filter` field.
+- If the query requires aggregation, **do not include a `filter` field**. Instead, only include the aggregation pipeline. 
+
+***Relationship Between users and tasks***
+
+Each task can have one or more assignees, represented by AssigneeUserId in the tasks collection. This field stores an array of references to the _id of users in the users collection.
+Users can be assigned multiple tasks, as seen in the AssigneeUserId field of the tasks collection.
+
+Below are several sample user questions related to the MongoDB document provided, 
+and the corresponding MongoDB aggregation pipeline queries that can be used to fetch the desired data.
+Use them wisely.
+
+sample_question: {sample}
+As an expert you must use them whenever required.
+Note: You have to just return the query nothing else. Don't return any additional detail with the query.Please follow this strictly
+input:{question}
+output:
+
+Please return only the MongoDB query for the user's question. The output should be a valid aggregation pipeline query.
+
+
+
+
+
+4. LLM + LangChain + OpenAI(ChatGPT-4)
+Updated prompt - existent fields + createdAt

@@ -1,0 +1,59 @@
+Basic Questions:
+
+What are the tasks for Alice?
+What is Bob’s task?
+What tasks are pending?
+Who is working on the "Complete project report" task?
+What is the status of "Prepare AI workshop slides"?
+When is "Fix model accuracy issue" scheduled?
+Which task is assigned to Emma?
+Who is assigned to the task with ID 7?
+Which tasks are marked as "completed"?
+What is the status of the task with ID 8?
+Who is working on the "Optimize SQL queries" task?
+
+Intermediate Questions:
+
+How many tasks are pending?
+Which tasks are marked as "to do"?
+How many tasks are assigned to Henry?
+What tasks are in progress?
+-->Show all tasks which created after February 10th.
+What is the most recent task in the database?
+List all tasks assigned to Emma.
+How many tasks have been completed?
+What tasks are assigned to Frank?
+What tasks are assigned to Kelly and have a status of "pending"?
+
+Advanced Questions:
+
+How many tasks are in each status category (pending, completed, to do, in progress)?
+Show me all tasks scheduled after February 10th.
+What are the names of the people assigned to tasks with a status of "inprogress"?
+What tasks are assigned to Frank and Emma, and are marked as "pending"?
+Show all tasks that have the word "documentation" in the name.
+Which user has the most number of pending tasks?
+Show all tasks that were scheduled between February 1st and February 15th.
+What is the average priority of all tasks assigned to Emma, and their status?
+What are all the tasks that have been completed by a user with a priority of 5 or greater?
+How many tasks were completed in the first 10 days of February?
+Show tasks with a priority of 6 that are either "inprogress" or "pending".
+Which task was scheduled first, and what is its status?
+
+Complex Questions:
+
+Which user has the most tasks assigned in total, and what is their average task priority?
+How many tasks with priority 5 have been completed before February 15th?
+Show all tasks for users with priority greater than 4 and status "inprogress" or "pending".
+List all users who have tasks that are scheduled after February 10th and are "pending".
+Show me the details of the task that has the earliest due date but has not been completed yet.
+Count the number of tasks for each user and their respective statuses.
+Find all tasks that are assigned to the user with the most "to do" tasks.
+
+Contextual and Scenario-based Questions:
+
+Which tasks were assigned after Emma joined the team?
+What tasks are pending after February 15th?
+List all tasks that have "API" in their description and their current status.
+Which tasks have a higher priority but have not yet been marked "completed"?
+What tasks assigned to Nathan have not been started yet?
