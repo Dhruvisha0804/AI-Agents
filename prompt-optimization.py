@@ -1,116 +1,3 @@
-# import streamlit as st
-# from pymongo import MongoClient
-# import io, json, os
-# import faiss
-# import numpy as np
-# from langchain_openai import ChatOpenAI
-# from langchain.prompts import PromptTemplate
-# from dotenv import load_dotenv
-# from sentence_transformers import SentenceTransformer
-
-# # Load environment variables
-# load_dotenv()
-# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
-# if not OPENAI_API_KEY:
-#     st.error("Missing OpenAI API Key. Set OPENAI_API_KEY in environment variables.")
-#     st.stop()
-
-# # Initialize OpenAI LLM & Embeddings
-# llm = ChatOpenAI(model="gpt-4", temperature=0.0, openai_api_key=OPENAI_API_KEY)
-
-# # Load embedding model
-# embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
-
-# # Initialize FAISS Index
-# query_dim = 384
-# index = faiss.IndexFlatL2(query_dim)
-# stored_queries = []
-# query_mappings = {}
-
-# def add_query_to_faiss(question, mongo_query):
-#     vector = embedding_model.encode([question])
-#     index.add(np.array(vector, dtype=np.float32))
-#     stored_queries.append(question)
-#     query_mappings[question] = mongo_query
-
-# def find_similar_query(user_query):
-#     vector = embedding_model.encode([user_query])
-#     distances, indices = index.search(np.array(vector, dtype=np.float32), 1)
-#     if distances[0][0] < 0.5:
-#         return stored_queries[indices[0][0]], query_mappings[stored_queries[indices[0][0]]]
-#     return None, None
-
-# # MongoDB Local Connection
-# MONGO_URI = "mongodb://localhost:27017"
-# client = MongoClient(MONGO_URI)
-# db = client["task_demo"]
-# tasks_collection = db["tasks"]
-# users_collection = db["users"]
-
-# # Function to load queries from the file
-# def load_queries(file_path):
-#     with open(file_path, 'r') as file:
-#         return json.load(file)
-
-# # Load the queries from the sample-json.txt file
-# sample_queries = load_queries('sample-json.txt')
-
-# def generate_mongo_query(user_question):
-#     similar_question, stored_query = find_similar_query(user_question)
-#     if stored_query:
-#         st.write(f"Using cached query for: {similar_question}")
-#         return stored_query
-
-#     prompt = f"""
-#     You are an expert in converting English questions into MongoDB queries!
-#     The database is named 'task_demo' and contains two collections: 'tasks' and 'users'.
-#     including nested and embedded data structures that add depth and detail to the document.
-#     The 'tasks' collection has fields: AssigneeUserId, TaskName, Status (embedded object with text, key, and type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader etc.
-#     The 'users' collection has fields: _id, Employee_FName, Employee_LName, Employee_Name, createdAt, etc.
-
-#     **Important Rule**: Always reference the `status.text` field when filtering by task status (e.g., `status.text: "Done"`).
-#     Always reference the `sprintArray.folderName` field when filtering by sprint folders (e.g., `sprintArray.folderName: "Development"`).
-
-#     **Additional Rule**:
-#     - When you need to filter tasks or query simple fields, you can use the `filter` field.
-#     - If the query requires aggregation, **do not include a `filter` field**. Instead, only include the aggregation pipeline.
-
-#     ***Relationship Between users and tasks***
-
-#     Each task can have one or more assignees, represented by AssigneeUserId in the tasks collection. This field stores an array of references to the _id of users in the users collection.
-#     Users can be assigned multiple tasks, as seen in the AssigneeUserId field of the tasks collection.
-
-#     Below are several sample user questions related to the MongoDB document provided,
-#     and the corresponding MongoDB aggregation pipeline queries that can be used to fetch the desired data.
-#     Use them wisely.
-
-#     User Question: {user_question}
-#     """
-
-#     response = llm.generate([prompt])
-#     mongo_query = response.generations[0][0].text.strip()
-#     add_query_to_faiss(user_question, mongo_query)
-#     return mongo_query
-
-# # Streamlit UI
-# st.title("MongoDB Query Generator")
-
-# user_question = st.text_input("Enter your question:")
-
-# if st.button("Generate Query"):
-#     if user_question:
-#         mongo_query = generate_mongo_query(user_question)
-#         st.write("Generated MongoDB Query:")
-#         st.code(mongo_query, language="json")
-#     else:
-#         st.warning("Please enter a question.")
-
-
-
-
-
-
 from pymongo import MongoClient
 import io, json, os
 import faiss
@@ -128,7 +15,7 @@ import tiktoken
 from sentence_transformers import SentenceTransformer
 import requests
 from bson.json_util import dumps
-from streamlit import st
+import streamlit as st
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -188,36 +75,27 @@ with io.open("sample.txt", "r", encoding="utf-8") as f1:
     sample = f1.read()
 
 prompt = """
-    You are an expert in converting English questions into MongoDB queries!
-    The database is named 'task_demo' and contains three collections: 'tasks', 'users', and 'projects'.
-    including nested and embedded data structures that add depth and detail to the document.
-    The 'tasks' collection has fields: AssigneeUserId, TaskName, Status (embedded object with text, key, and type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader etc.
-    The 'users' collection has fields: _id, Employee_FName, Employee_LName, Employee_Name, createdAt, etc.
-    The 'projects' collection has fields: _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName, etc.
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
 
-    **Important Rule**: Always reference the `status.text` field when filtering by task status (e.g., `status.text: "Done"`).
-    Always reference the `sprintArray.folderName` field when filtering by sprint folders (e.g., `sprintArray.folderName: "Development"`).
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
 
-    **Additional Rule**:
-    - When you need to filter tasks or query simple fields, you can use the `filter` field.
-    - If the query requires aggregation, **do not include a `filter` field**. Instead, only include the aggregation pipeline.
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: "Done"`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: "Development"`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
 
-    ***Relationship Between users, tasks, and projects***
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
 
-    Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and users can be assigned to multiple tasks.
-    Each task (tasks.ProjectID) belongs to a single project (projects._id), one project may have multiple assignees.
-
-    Below are several sample user questions related to the MongoDB document provided,
-    and the corresponding MongoDB aggregation pipeline queries that can be used to fetch the desired data.
-    Use them wisely.
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query, no additional details.
 
     sample_question: {sample}
-    As an expert you must use them whenever required.
-    Note: You have to just return the query nothing else. Don't return any additional detail with the query.Please follow this strictly.
-    input:{question}
-    output:
+    As an expert, use them as needed.
 
-    Please return only the MongoDB query for the user's question. The output should be a valid aggregation pipeline query.
+    input: {question}
+    output:
 """
 
 def convert_dates(query):
@@ -270,28 +148,6 @@ def execute_mongo_query(query):
     except Exception as e:
         logging.error(f"Error executing query: {str(e)}")
         return [f"Error: {str(e)}"]
-
-# def execute_mongo_query(query):
-#     try:
-#         query = convert_dates(query)
-#         query = convert_to_objectid(query)
-#         if "aggregate" in query:
-#             logging.info(f"Executing MongoDB aggregation query: {query}")
-#             collection = db[query["collection"]]
-#             results = collection.aggregate(query["aggregate"])
-#         elif "filter" in query:
-#             logging.info(f"Executing MongoDB filter query: {query}")
-#             collection = db[query["collection"]]
-#             results = collection.find(query["filter"], query.get("projection", {}))
-#         else:
-#             raise ValueError("Query must contain either 'aggregate' or 'filter' field")
-        
-#         # Use json_util.dumps to handle ObjectId serialization
-#         return dumps(results)  # This will serialize the ObjectId as a string
-
-#     except Exception as e:
-#         logging.error(f"Error executing query: {str(e)}")
-#         return [f"Error: {str(e)}"]
 
 
 def count_tokens(text, model_name="gpt-3.5-turbo"):

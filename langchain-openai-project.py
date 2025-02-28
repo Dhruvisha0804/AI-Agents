@@ -23,6 +23,17 @@ if not OPENAI_API_KEY:
     st.error("Missing OpenAI API Key. Set OPENAI_API_KEY in environment variables.")
     st.stop()
 
+
+import requests
+
+# Groq API Configuration
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+
+if not GROQ_API_KEY:
+    logging.error("GROQ_API_KEY is missing. Please set it in the environment variables.")
+
 # Initialize OpenAI LLM
 llm = ChatOpenAI(model="gpt-4", temperature=0.0, openai_api_key=OPENAI_API_KEY)
 
@@ -70,23 +81,13 @@ prompt ="""
 
     sample_question: {sample}
     As an expert you must use them whenever required.
-    Note: You have to just return the query nothing else. Don't return any additional detail with the query.Please follow this strictly
+    Note: You have to just return the query nothing else. Don't return any additional detail with the query.Please follow this strictly.
     input:{question}
     output:
 
     Please return only the MongoDB query for the user's question. The output should be a valid aggregation pipeline query.
 
 """
-
-import requests
-
-# Groq API Configuration
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-GROQ_MODEL = "llama-3.3-70b-versatile"
-GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-
-if not GROQ_API_KEY:
-    logging.error("GROQ_API_KEY is missing. Please set it in the environment variables.")
 
 
 from datetime import datetime
