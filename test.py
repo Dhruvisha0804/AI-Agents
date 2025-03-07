@@ -139,10 +139,60 @@
 # test_mongo_connection()
 
 
+# import transformers
+# import torch
+
+# model_id = "meta-llama/Llama-3.3-70B-Instruct"
+
+# pipeline = transformers.pipeline(
+#     "text-generation",
+#     model=model_id,
+#     model_kwargs={"torch_dtype": torch.bfloat16},
+#     device_map="auto",
+# )
+
+# messages = [
+#     {"role": "system", "content": "You are a pirate chatbot who always responds in pirate speak!"},
+#     {"role": "user", "content": "Who are you?"},
+# ]
+
+# outputs = pipeline(
+#     messages,
+#     max_new_tokens=256,
+# )
+# print(outputs[0]["generated_text"][-1])
+
+
+# from huggingface_hub import snapshot_download
+# from llama_cpp import Llama
+
+# model_name_or_path = "meta-llama/Llama-3.2-3B-Instruct" #or 3B version
+# local_model_path = "./models"  # Directory to save the model
+
+# # Download the model from Hugging Face Hub
+# snapshot_download(repo_id=model_name_or_path, local_dir=local_model_path)
+
+# # Path to the original model files
+# original_model_path = local_model_path
+
+# # Path to save the quantized model
+# quantized_model_path = "./quantized_models/llama-3.2-3b-instruct.Q4_0.gguf"
+
+# # Quantize the model (example: Q4_0 quantization)
+# llm = Llama(model_path=f"{original_model_path}/model.safetensors", n_gpu_layers=-1, n_ctx=2048, logits_all=True, verbose=True)
+# llm.convert_to_gguf(quantized_model_path, quantize="Q4_0")
+
+# # Load the quantized model
+# llm = Llama(model_path=quantized_model_path)
+
+# print(llm("The best programming language is "))
+
+
+
 import transformers
 import torch
 
-model_id = "meta-llama/Llama-3.3-70B-Instruct"
+model_id = "meta-llama/Meta-Llama-3.1-8B-Instruct"
 
 pipeline = transformers.pipeline(
     "text-generation",
@@ -161,3 +211,29 @@ outputs = pipeline(
     max_new_tokens=256,
 )
 print(outputs[0]["generated_text"][-1])
+
+
+
+
+
+
+# from transformers import AutoModelForCausalLM
+
+# model_id = "meta-llama/Llama-3.2-3B-Instruct"  # Replace with correct ID
+# try:
+#     model = AutoModelForCausalLM.from_pretrained(model_id)
+#     print("Model loaded successfully!")
+# except Exception as e:
+#     print(f"Error: {e}")
+
+
+# import torch
+
+# if torch.cuda.is_available():
+#     print("GPU is available!")
+#     print(f"GPU device name: {torch.cuda.get_device_name(0)}") #prints the name of the first available gpu
+#     device = torch.device("cuda")
+# else:
+#     print("GPU is NOT available.")
+#     device = torch.device("cpu")
+

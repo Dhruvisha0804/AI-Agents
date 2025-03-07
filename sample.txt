@@ -483,3 +483,38 @@ json
         "_id": 1
     }
 }
+
+
+Question 20. Retrieve tasks under the project 'Alian Hub Design & Development' that have a 'MEDIUM' priority and were created last month.
+
+Query
+json
+{
+    "collection": "tasks",
+    "filter": {
+        "ProjectID": {
+            "$in": [
+                {
+                    "$lookup": {
+                        "from": "projects",
+                        "localField": "ProjectID",
+                        "foreignField": "_id",
+                        "as": "project_info"
+                    }
+                }
+            ]
+        },
+        "project_info.ProjectName": "Alian Hub Design & Development",
+        "Task_Priority": "MEDIUM",
+        "createdAt": {
+            "$gte": { "$date": "2025-02-01T00:00:00.000Z" },
+            "$lt": { "$date": "2025-03-01T00:00:00.000Z" }
+        }
+    },
+    "projection": {
+        "TaskName": 1,
+        "Task_Priority": 1,
+        "createdAt": 1,
+        "_id": 0
+    }
+}

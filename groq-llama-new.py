@@ -8,41 +8,53 @@ from dotenv import load_dotenv
 import time
 import tiktoken
 from sentence_transformers import SentenceTransformer
-import requests
 import streamlit as st
 from datetime import datetime
 from bson import ObjectId
+import torch
+from transformers import pipeline
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Load environment variables
 load_dotenv()
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-GROQ_MODEL = "llama-3.3-70b-versatile"
-GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+logging.debug("Environment variables loaded.")
 
-if not GROQ_API_KEY:
-    logging.error("GROQ_API_KEY is missing. Please set it in the environment variables.")
+# Load local Llama model
+model_id = "meta-llama/Llama-3.2-3B-Instruct"
+pipe = pipeline(
+    "text-generation",
+    model=model_id,
+    torch_dtype=torch.bfloat16,
+    device_map="auto",
+)
+logging.debug("Llama model loaded.")
 
-# Load embedding model
+# Load embedding model for FAISS indexing
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+logging.debug("Embedding model loaded.")
 
 # Initialize FAISS Index
 query_dim = 384
 index = faiss.IndexFlatL2(query_dim)
 stored_queries = []
 query_mappings = {}
+logging.debug("FAISS index initialized.")
 
 def add_query_to_faiss(question, mongo_query):
+    logging.debug(f"Adding query to FAISS: {question}")
     vector = embedding_model.encode([question])
     index.add(np.array(vector, dtype=np.float32))
     stored_queries.append(question)
     query_mappings[question] = mongo_query
 
 def find_similar_query(user_query):
+    logging.debug(f"Searching for similar query: {user_query}")
     vector = embedding_model.encode([user_query])
     distances, indices = index.search(np.array(vector, dtype=np.float32), 1)
+    logging.debug(f"FAISS search distances: {distances}")
     if distances[0][0] < 0.5:
+        logging.debug(f"Found similar query: {stored_queries[indices[0][0]]}")
         return stored_queries[indices[0][0]], query_mappings[stored_queries[indices[0][0]]]
     return None, None
 
@@ -53,8 +65,9 @@ db = client["task_demo"]
 tasks_collection = db["tasks"]
 users_collection = db["users"]
 projects_collection = db["projects"]
+logging.debug("MongoDB connected.")
 
-st.title("MongoDB AI Agent with Groq and FAISS")
+st.title("MongoDB AI Agent with Local Llama Model and FAISS")
 st.write("Ask anything and get an answer")
 input_text = st.text_area("Enter your question here")
 
@@ -82,9 +95,12 @@ prompt = """
     sample_question: {sample}
     As an expert, use them as needed.
 
+    **Most Importsant:** Do not return with any additional text like ```json, json, etc, just return MongoDB json query only.
+
     input: {question}
     output:
 """
+
 
 def convert_dates(query):
     if isinstance(query, dict):
@@ -135,32 +151,39 @@ def execute_mongo_query(query):
         logging.error(f"Error executing query: {str(e)}")
         return [f"Error: {str(e)}"]
 
-def get_groq_response(question, query_results, prompt):
+def get_model_response(question, query_results, prompt):
     try:
-        headers = {
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "Content-Type": "application/json"
-        }
-        data = {
-            "model": GROQ_MODEL,
-            "messages": [
-                {"role": "system", "content": prompt.format(question=question, sample=sample)},
-                {"role": "user", "content": f"Query results: {query_results}"}
-            ]
-        }
-        logging.info("Sending request to Groq API...")
-        response = requests.post(GROQ_API_URL, json=data, headers=headers)
+        logging.info("Generating response using Llama model...")
 
-        if response.status_code == 200:
-            result = response.json()
-            logging.info("Received response from Groq API successfully.")
-            return result["choices"][0]["message"]["content"].strip()
+        # Include query_results in the prompt
+        modified_prompt = prompt.format(question=question, sample=sample) + f"\nQuery results: {query_results}"
+
+        response = pipe(
+            [{"role": "system", "content": modified_prompt}],
+            max_new_tokens=256
+        )
+
+        if isinstance(response, list) and len(response) > 0:
+            response_text = response[0].get('generated_text', '')
+            if isinstance(response_text, list):
+                response_text = ''.join([line.get('content', '') for line in response_text])
         else:
-            logging.error(f"Groq API Error {response.status_code}: {response.text}")
-            return f"Error: {response.json()}"
+            logging.error("Unexpected response format from model.")
+            return "Error: Unexpected response format."
+
+        if response_text.startswith("```json"):
+            response_text = response_text[7:]
+        if response_text.endswith("```"):
+            response_text = response_text[:-3]
+
+        response_text = response_text.strip()
+
+        return response_text
     except Exception as e:
-        logging.error(f"Error in Groq API request: {e}")
-        return f"API Error: {str(e)}"
+        logging.error(f"Error generating response with Llama model: {e}")
+        return f"Error: {str(e)}"
+
+
 
 if input_text:
     button = st.button("Submit")
@@ -176,7 +199,7 @@ if input_text:
                 query = stored_query
                 st.write(f"Using cached query for: {similar_question}")
             else:
-                response_text = get_groq_response(question, "Generate the MongoDB query", prompt)
+                response_text = get_model_response(question, "Generate the MongoDB query", prompt)
                 query_generation_time = time.time() - start_time
                 if not response_text.strip():
                     st.error("Groq API returned an empty response.")
@@ -214,7 +237,7 @@ if input_text:
                         try:
                             # query_results_json = json.dumps(query_results) #convert to json string.
                             human_like_gen_time = time.time() - start_time
-                            human_readable_output = get_groq_response(question, query_results, """
+                            human_readable_output = get_model_response(question, query_results, """
                                 You are a translator for MongoDB query results in JSON format. Your task is to convert the results into a concise, human-readable sentence.
                                 
                             """)
@@ -233,3 +256,9 @@ if input_text:
             st.error(f"Error parsing JSON: {e}. LLM output was not valid JSON.")
         except Exception as e:
             st.error(f"Error executing query: {e}")
+
+
+
+
+
+
