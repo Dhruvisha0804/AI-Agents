@@ -1,0 +1,43 @@
+question,query,response,text
+Who is leading the 'Alian Hr module' project?,"{'collection': 'projects', 'aggregate': [{'$match': {'ProjectName': 'Alian Hr module'}}, {'$lookup': {'from': 'users', 'let': {'leadUser': {'$map': {'input': '$LeadUserId', 'as': 'id', 'in': {'$toObjectId': '$$id'}}}}, 'pipeline': [{'$match': {'$expr': {'$in': ['$_id', '$$leadUser']}}}, {'$project': {'Employee_Name': 1, '_id': 0}}], 'as': 'leaders'}}, {'$unwind': '$leaders'}, {'$project': {'leaders.Employee_Name': 1, '_id': 0}}]}",{'Employee_Name': 'Rashesh Makwana'},"
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:Who is leading the 'Alian Hr module' project?
+###Query:
+{'collection': 'projects', 'aggregate': [{'$match': {'ProjectName': 'Alian Hr module'}}, {'$lookup': {'from': 'users', 'let': {'leadUser': {'$map': {'input': '$LeadUserId', 'as': 'id', 'in': {'$toObjectId': '$$id'}}}}, 'pipeline': [{'$match': {'$expr': {'$in': ['$_id', '$$leadUser']}}}, {'$project': {'Employee_Name': 1, '_id': 0}}], 'as': 'leaders'}}, {'$unwind': '$leaders'}, {'$project': {'leaders.Employee_Name': 1, '_id': 0}}]}
+###Response:
+{'Employee_Name': 'Rashesh Makwana'}"
+List out all tasks those are created on 21 feb 2025.,"{'collection': 'tasks', 'filter': {'createdAt': {'$gte': {'$date': '2025-02-21T00:00:00.000Z'}, '$lt': {'$date': '2025-02-22T00:00:00.000Z'}}}, 'projection': {'TaskName': 1, '_id': 0}}","[{'TaskName': ""Client's Comments (21/02/2025)""}, {'TaskName': 'Handling Multiple database and Optimize ORM Queries'}, {'TaskName': 'Text Slider'}, {'TaskName': 'our collection section'}, {'TaskName': 'New product'}, {'TaskName': 'Banner updates'}, {'TaskName': 'Create German Calculator Page'}, {'TaskName': 'requesting an hour off today to leave early'}, {'TaskName': 'Photos updates 21/02/2025'}, {'TaskName': 'Home Page Design'}, {'TaskName': 'https://www.upwork.com/nx/proposals/interview/uid/1892646489415331840'}, {'TaskName': 'Final Changes'}, {'TaskName': 'Final Changes'}, {'TaskName': 'https://www.upwork.com/jobs/Website-Migration-Specialist_~021892787712101306484/'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:List out all tasks those are created on 21 feb 2025.
+###Query:
+{'collection': 'tasks', 'filter': {'createdAt': {'$gte': {'$date': '2025-02-21T00:00:00.000Z'}, '$lt': {'$date': '2025-02-22T00:00:00.000Z'}}}, 'projection': {'TaskName': 1, '_id': 0}}
+###Response:
+[{'TaskName': ""Client's Comments (21/02/2025)""}, {'TaskName': 'Handling Multiple database and Optimize ORM Queries'}, {'TaskName': 'Text Slider'}, {'TaskName': 'our collection section'}, {'TaskName': 'New product'}, {'TaskName': 'Banner updates'}, {'TaskName': 'Create German Calculator Page'}, {'TaskName': 'requesting an hour off today to leave early'}, {'TaskName': 'Photos updates 21/02/2025'}, {'TaskName': 'Home Page Design'}, {'TaskName': 'https://www.upwork.com/nx/proposals/interview/uid/1892646489415331840'}, {'TaskName': 'Final Changes'}, {'TaskName': 'Final Changes'}, {'TaskName': 'https://www.upwork.com/jobs/Website-Migration-Specialist_~021892787712101306484/'}]"

@@ -218,3 +218,42 @@ Group tasks by all different folderName values in sprintArray
         }
     ]
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+        "question": "List out all users who have task status 'To Do'",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$lookup": { "from": "users", "localField": "AssigneeUserId", "foreignField": "_id", "as": "user_info" } },
+                { "$unwind": "$user_info" },
+                { "$match": { "status.text": "To Do" } },
+                { "$project": { "user_info.Employee_Name": 1, "status.text": 1, "_id": 0 } }
+            ]
+        },
+        "results": 
+    },
+          {
+        "question": "What is the id of employee name 'Shiv Joshi'?",
+        "query": {
+          "collection": "users",
+          "filter": {
+            "Employee_Name": "Shiv Joshi"
+          },
+          "projection": {
+            "_id": 1
+          }
+        },
+        "results": []
+      },

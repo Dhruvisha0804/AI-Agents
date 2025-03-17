@@ -2,7 +2,7 @@ Below are several sample user questions related to the MongoDB document provided
 and the corresponding MongoDB aggregation pipeline queries that can be used to fetch the desired data.
 Use them wisely.
 
-Question 1. "How many tasks are there by each different status?" → 
+Question 1. How many tasks are there by each different status?
 
 Query
 json
@@ -14,7 +14,7 @@ json
 }
 
 
-Question 2. "How many tasks exist?" → 
+Question 2. How many tasks exist?
 
 Query
 json
@@ -26,7 +26,7 @@ json
 }
 
 
-Question 3. "List out all users who have task status 'done'" → 
+Question 3. List out all users who have task status 'done'
 
 Query
 json
@@ -60,7 +60,7 @@ json
 }
 
 
-Question 4. "Show all tasks assigned to '6571e715e5d066d39dd01b39'" → 
+Question 4. Show all tasks assigned to '6571e715e5d066d39dd01b39'
 
 Query
 json
@@ -70,7 +70,7 @@ json
 }
 
 
-Question 5. "List all tasks for employee 'Shiv Joshi'" → 
+Question 5. List all tasks for employee 'Shiv Joshi'
 List all tasks for employee 'Shiv Joshi'
 Query
 json
@@ -103,7 +103,7 @@ json
 }
 
 
-Question 6. Find all tasks with status "In Progress"
+Question 6. Find all tasks with status "In Progress".
 
 Query
 json
@@ -114,7 +114,7 @@ json
 }
 
 
-Question 7. Filter out the employee whose '_id' ends with '68'
+Question 7. Filter out the employee whose '_id' ends with '68'.
 
 Query
 json
@@ -132,7 +132,7 @@ json
 }
 
 
-Question 8. Aggregation to Count Tasks Created on a Specific Date
+Question 8. Aggregation to Count Tasks Created on a Specific Date.
 
 Query
 json
@@ -154,7 +154,7 @@ json
 }
 
 
-Question 9. Query for Tasks Created on a Specific Date
+Question 9. Query for Tasks Created on a Specific Date.
 
 Query
 json
@@ -170,7 +170,7 @@ json
 }
 
 
-Question 10. List out all the records whose project id is '6571e7195470e64b120328d5'
+Question 10. List out all the records whose project id is '6571e7195470e64b120328d5'.
 
 Query
 json
@@ -186,7 +186,7 @@ json
 }
 
 
-question 11. To find the task leader using the task name
+question 11. To find the task leader using the task name.
 
 Query
 json
@@ -224,7 +224,7 @@ json
 }
 
 
-Question 12: List all tasks under the "Development" folder in sprintArray
+Question 12: List all tasks under the "Development" folder in sprintArray.
 
 Query
 json
@@ -240,7 +240,7 @@ json
 }
 
 
-Question 13. Count how many tasks are there in the "Development" sprint
+Question 13. Count how many tasks are there in the "Development" sprint.
 
 Query
 json
@@ -259,7 +259,7 @@ json
 }
 
 
-Question 14. Group tasks by all different folderName values in sprintArray
+Question 14. Group tasks by all different folderName values in sprintArray.
 
 Query
 json
@@ -470,3 +470,51 @@ json
 }
 
 
+Question 19. what is the id of employee name 'Shiv Joshi'?
+
+Query
+json
+{
+    "collection": "users",
+    "filter": {
+        "Employee_Name": "Shiv Joshi"
+    },
+    "projection": {
+        "_id": 1
+    }
+}
+
+
+Question 20. Retrieve tasks under the project 'Alian Hub Design & Development' that have a 'MEDIUM' priority and were created last month.
+
+Query
+json
+{
+    "collection": "tasks",
+    "filter": {
+        "ProjectID": {
+            "$in": [
+                {
+                    "$lookup": {
+                        "from": "projects",
+                        "localField": "ProjectID",
+                        "foreignField": "_id",
+                        "as": "project_info"
+                    }
+                }
+            ]
+        },
+        "project_info.ProjectName": "Alian Hub Design & Development",
+        "Task_Priority": "MEDIUM",
+        "createdAt": {
+            "$gte": { "$date": "2025-02-01T00:00:00.000Z" },
+            "$lt": { "$date": "2025-03-01T00:00:00.000Z" }
+        }
+    },
+    "projection": {
+        "TaskName": 1,
+        "Task_Priority": 1,
+        "createdAt": 1,
+        "_id": 0
+    }
+}

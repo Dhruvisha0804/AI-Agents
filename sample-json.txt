@@ -1,0 +1,279 @@
+[
+    {
+        "question": "How many tasks are there by each different status?",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$group": { "_id": "$status.text", "count": { "$sum": 1 } } }
+            ]
+        }
+    },
+    {
+        "question": "How many tasks exist?",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$count": "total_tasks" }
+            ]
+        }
+    },
+    {
+        "question": "List out all users who have task status 'done'.",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                {
+                    "$lookup": {
+                        "from": "users",
+                        "localField": "AssigneeUserId",
+                        "foreignField": "_id",
+                        "as": "user_info"
+                    }
+                },
+                { "$unwind": "$user_info" },
+                { "$match": { "status.text": "Done" } },
+                { "$project": { "user_info.Employee_Name": 1, "status.text": 1, "_id": 0 } }
+            ]
+        }
+    },
+    {
+        "question": "Show all tasks assigned to '6571e715e5d066d39dd01b39'.",
+        "query": {
+            "collection": "tasks",
+            "filter": { "AssigneeUserId": "6571e715e5d066d39dd01b39" },
+            "projection": { "TaskName": 1, "_id": 0 }
+        }
+    },
+    {
+        "question": "List all tasks for employee 'Shiv Joshi'.",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                {
+                    "$lookup": {
+                        "from": "users",
+                        "localField": "AssigneeUserId",
+                        "foreignField": "_id",
+                        "as": "user_info"
+                    }
+                },
+                { "$unwind": "$user_info" },
+                { "$match": { "user_info.Employee_Name": "Shiv Joshi" } },
+                { "$project": { "TaskName": 1, "_id": 0 } }
+            ]
+        }
+    },
+    {
+        "question": "Find all tasks with status 'In Progress'.",
+        "query": {
+            "collection": "tasks",
+            "filter": { "status.text": "In Progress" },
+            "projection": { "TaskName": 1, "_id": 0 }
+        }
+    },
+    {
+        "question": "Filter out the employee whose '_id' ends with '68'.",
+        "query": {
+            "collection": "users",
+            "filter": {
+                "$expr": {
+                    "$regexMatch": {
+                        "input": { "$toString": "$_id" },
+                        "regex": "68$"
+                    }
+                }
+            },
+            "projection": { "Employee_Name": 1, "_id": 1 }
+        }
+    },
+    {
+        "question": "Aggregation to Count Tasks Created on a Specific Date",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                {
+                    "$match": {
+                        "createdAt": {
+                            "$gte": { "$date": "2023-01-01T00:00:00.000Z" },
+                            "$lt": { "$date": "2024-01-01T00:00:00.000Z" }
+                        }
+                    }
+                },
+                { "$count": "total_tasks" }
+            ]
+        }
+    },
+    {
+        "question": "Query for Tasks Created on a Specific Date",
+        "query": {
+            "collection": "tasks",
+            "filter": {
+                "createdAt": {
+                    "$gte": { "$date": "2025-01-01T00:00:00.000Z" },
+                    "$lt": { "$date": "2025-01-01T00:00:00.000Z" }
+                }
+            },
+            "projection": { "TaskName": 1, "_id": 0 }
+        }
+    },
+    {
+        "question": "List all the records whose project id is '6571e7195470e64b120328d5'",
+        "query": {
+            "collection": "tasks",
+            "filter": { "ProjectID": "6571e7195470e64b120328d5" },
+            "projection": { "TaskName": 1, "_id": 0 }
+        }
+    },
+    {
+        "question": "Find the task leader using the task name",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$match": { "TaskName": "Task Name Here" } },
+                { "$addFields": { "Task_Leader": { "$toObjectId": "$Task_Leader" } } },
+                {
+                    "$lookup": {
+                        "from": "users",
+                        "localField": "Task_Leader",
+                        "foreignField": "_id",
+                        "as": "leader_info"
+                    }
+                },
+                { "$unwind": "$leader_info" },
+                { "$project": { "leader_info.Employee_Name": 1, "_id": 0 } }
+            ]
+        }
+    },
+    {
+        "question": "List all tasks under the 'Development' folder in sprintArray",
+        "query": {
+            "collection": "tasks",
+            "filter": { "sprintArray.folderName": "Development" },
+            "projection": { "TaskName": 1, "_id": 0 }
+        }
+    },
+    {
+        "question": "Count how many tasks are there in the 'Development' sprint",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$match": { "sprintArray.folderName": "Development" } },
+                { "$count": "total_tasks" }
+            ]
+        }
+    },
+    {
+        "question": "Group tasks by all different folderName values in sprintArray",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$unwind": "$sprintArray" },
+                {
+                    "$group": {
+                        "_id": "$sprintArray.folderName",
+                        "task_count": { "$sum": 1 }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "question": "List all employees working on 'Alian Hr module' project",
+        "query": {
+            "collection": "projects",
+            "aggregate": [
+                { "$match": { "ProjectName": "Alian Hr module" } },
+                {
+                    "$lookup": {
+                        "from": "users",
+                        "let": {
+                            "assignees": {
+                                "$map": {
+                                    "input": "$AssigneeUserId",
+                                    "as": "id",
+                                    "in": { "$toObjectId": "$$id" }
+                                }
+                            }
+                        },
+                        "pipeline": [
+                            { "$match": { "$expr": { "$in": ["$_id", "$$assignees"] } } },
+                            { "$project": { "Employee_Name": 1, "_id": 0 } }
+                        ],
+                        "as": "employees"
+                    }
+                },
+                { "$unwind": "$employees" },
+                { "$project": { "employees.Employee_Name": 1, "_id": 0 } }
+            ]
+        }
+    },
+    {
+        "question": "Who is leading the 'Alian Hr module' project?",
+        "query": {
+            "collection": "projects",
+            "aggregate": [
+                { "$match": { "ProjectName": "Alian Hr module" } },
+                {
+                    "$lookup": {
+                        "from": "users",
+                        "let": {
+                            "leadUser": {
+                                "$map": {
+                                    "input": "$LeadUserId",
+                                    "as": "id",
+                                    "in": { "$toObjectId": "$$id" }
+                                }
+                            }
+                        },
+                        "pipeline": [
+                            { "$match": { "$expr": { "$in": ["$_id", "$$leadUser"] } } },
+                            { "$project": { "Employee_Name": 1, "_id": 0 } }
+                        ],
+                        "as": "leaders"
+                    }
+                },
+                { "$unwind": "$leaders" },
+                { "$project": { "leaders.Employee_Name": 1, "_id": 0 } }
+            ]
+        }    
+    },
+    {
+        "question": "Which project category does 'Alian Hr module' belong to?",
+        "query": {
+            "collection": "projects",
+            "aggregate": [
+                { "$match": { "ProjectName": "Alian Hr module" } },
+                { "$project": { "ProjectCategory": 1, "_id": 0 } }
+            ]
+        }
+    },
+    {
+        "question": "List out all the projects that are led by the leader id '6571e715e5d066d39dd01ae2'.",
+        "query": {
+            "collection": "projects",
+            "aggregate": [
+                { "$match": { "LeadUserId": "6571e715e5d066d39dd01ae2" } },
+                { "$project": { "ProjectName": 1, "_id": 0 } }
+            ]
+        }
+    },
+    {
+        "question": "List out all the projects that are led by the leader id 'Rashesh Makwana'.",
+        "query": {
+            "collection": "users",
+            "aggregate": [
+                { "$match": { "Employee_Name": "Rashesh Makwana" } },
+                {
+                    "$lookup": {
+                        "from": "projects",
+                        "localField": "_id",
+                        "foreignField": "LeadUserId",
+                        "as": "projects"
+                    }
+                },
+                { "$unwind": "$projects" },
+                { "$project": { "projects.ProjectName": 1, "_id": 0 } }
+            ]
+        }
+    }
+]

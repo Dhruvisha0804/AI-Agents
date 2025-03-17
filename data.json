@@ -1,0 +1,645 @@
+[
+    {
+        "question": "How many tasks are there by each different status?",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$group": { "_id": "$status.text", "count": { "$sum": 1 } } }
+            ]
+        },
+        "response": [
+            { "_id": "Query", "count": 2 },
+            { "_id": "Reviewing - Management", "count": 3 },
+            { "_id": "Job Post Closed", "count": 4 },
+            { "_id": "Rejected", "count": 27 },
+            { "_id": "Need to Reproduce", "count": 18 },
+            { "_id": "Approved", "count": 1109 },
+            { "_id": "Hired Someone Else", "count": 65 },
+            { "_id": "Lead", "count": 17 },
+            { "_id": "Drop", "count": 2 },
+            { "_id": "In Review - TL", "count": 2544 },
+            { "_id": "About to Finalize", "count": 1 },
+            { "_id": "Open, Not Interviewing", "count": 1 },
+            { "_id": "To Do", "count": 8348 },
+            { "_id": "Submit", "count": 92 },
+            { "_id": "Hold | Client not respond", "count": 61 },
+            { "_id": "Existing client invite", "count": 7 },
+            { "_id": "Image Creation", "count": 1 },
+            { "_id": "On Hold", "count": 149 },
+            { "_id": "In Discussion", "count": 37 },
+            { "_id": "New Lead", "count": 10 },
+            { "_id": "Pending", "count": 64 },
+            { "_id": null, "count": 87 },
+            { "_id": "No longer avail not hired", "count": 96 },
+            { "_id": "Offer sent", "count": 1 },
+            { "_id": "Backlog", "count": 1017 },
+            { "_id": "Purchased", "count": 6 },
+            { "_id": "Winner", "count": 15 },
+            { "_id": "Open, Interviewing Other", "count": 1 },
+            { "_id": "Hired us", "count": 8 },
+            { "_id": "Interviewing - Technical", "count": 17 },
+            { "_id": "Ready to Publish", "count": 2 },
+            { "_id": "Invitation", "count": 2 },
+            { "_id": "Done", "count": 21732 },
+            { "_id": "Dropped | Awarded to Othe", "count": 97 },
+            { "_id": "Demo Completed", "count": 2 },
+            { "_id": "Ready For Production", "count": 52 },
+            { "_id": "Join", "count": 8 },
+            { "_id": "Reviewing", "count": 2 },
+            { "_id": "In Progress", "count": 1318 },
+            { "_id": "Hold", "count": 1 },
+            { "_id": "Document Process", "count": 4 },
+            { "_id": "Resolved", "count": 19 },
+            { "_id": "Not Selected", "count": 140 },
+            { "_id": "In Review", "count": 875 },
+            { "_id": "Cancelled", "count": 30 },
+            { "_id": "Complete", "count": 28404 },
+            { "_id": "Code Review", "count": 45 }
+        ]           
+    },
+    {
+        "question": "How many tasks exist?",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$count": "total_tasks" }
+            ]
+        },
+        "response": {"total_tasks":66543}
+    },
+    {
+        "question": "Show all tasks assigned to '6571e715e5d066d39dd01b39'",
+        "query": {
+            "collection": "tasks",
+            "filter": { "AssigneeUserId": "6571e715e5d066d39dd01b39" },
+            "projection": { "TaskName": 1, "_id": 0 }
+        },
+        "response": [
+            { "TaskName": "some design changes to match the quiz frontend" },
+            { "TaskName": "welcome screen" },
+            { "TaskName": "Dashboard Design" },
+            { "TaskName": "Next 4 changes" },
+            { "TaskName": "understand requirements" },
+            { "TaskName": "Product Recommendations screen design" },
+            { "TaskName": "Add Quiz" },
+            { "TaskName": "New changes" },
+            { "TaskName": "Client feedback on the design: Admin and Result page." },
+            { "TaskName": "Quiz Responses" },
+            { "TaskName": "Add question" },
+            { "TaskName": "Advanced filter Post Design" },
+            { "TaskName": "Automation Post Design" },
+            { "TaskName": "Time Tracker Post Design" },
+            { "TaskName": "Updated Group By Design and add Chat in Group by" },
+            { "TaskName": "Alian Hub Views Post" },
+            { "TaskName": "Custom Form Post Design" },
+            { "TaskName": "CodeCanyon Banners design" },
+            { "TaskName": "General Setting" },
+            { "TaskName": "Date Selection screen" },
+            { "TaskName": "Changes in all screen" },
+            { "TaskName": "Question edit screen" }
+        ]        
+    },
+    {
+        "question": "list all the task of 'Shiv Joshi' which status marked as 'In Progress'",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$lookup": { "from": "users", "localField": "AssigneeUserId", "foreignField": "_id", "as": "user_info" } },
+                { "$unwind": "$user_info" },
+                { "$match": { "user_info.Employee_Name": "Shiv Joshi",
+                            "status.text": "In Progress"} },
+                { "$project": { "TaskName": 1, "_id": 0 } }
+            ]
+        },
+        "response": [
+            {"TaskName":"Audio record limit"},
+            {"TaskName":"Snapshot optimization"},
+            {"TaskName":"Additional 2: Create and sent certificate as per attached"},
+            {"TaskName":"fvrduirghsbvsgbjfughyrf"}
+        ]
+    },
+    {
+        "question": "Find all tasks with status 'To Do'",
+        "query": {
+            "collection": "tasks",
+            "filter": { "status.text": "To Do" },
+            "projection": { "TaskName": 1, "_id": 0 }
+        },
+        "response": [
+            { "TaskName": "create quiz welcome page" },
+            { "TaskName": "create question page" },
+            { "TaskName": "quiz list page" },
+            { "TaskName": "August 2024" },
+            { "TaskName": "January 2024" },
+            { "TaskName": "July 2024" },
+            { "TaskName": "May 2024" },
+            { "TaskName": "April 2024" },
+            { "TaskName": "February 2024" },
+            { "TaskName": "December 2023" },
+            { "TaskName": "Result page" },
+            { "TaskName": "add Form" },
+            { "TaskName": "Credentials" },
+            { "TaskName": "June 2024" },
+            { "TaskName": "Welcome screen" },
+            { "TaskName": "add question" },
+            { "TaskName": "March 2024" },
+            { "TaskName": "Najm Collection product description images" },
+            { "TaskName": "Tabby Model Issue" },
+            { "TaskName": "Meeting with JIM" },
+            { "TaskName": "Box Height not match with the live theme. https://prnt.sc/uz2d-iqUgiUR" }
+        ]        
+    },
+    {
+        "question": "Filter out the employee whose '_id' ends with '68'",
+        "query": {
+            "collection": "users",
+            "filter": { "$expr": { "$regexMatch": { "input": { "$toString": "$_id" }, "regex": "68$" } } },
+            "projection": { "Employee_Name": 1, "_id": 1 }
+        },
+        "response": [
+            {
+              "_id": "6571e715e5d066d39dd01b68",
+              "Employee_Name": "Shiv Joshi"
+            },
+            {
+              "_id": "6774d30e5290206723656a68",
+              "Employee_Name": "nidhi vasava"
+            }
+        ]       
+    },
+    {
+        "question": "How many tasks are there which status marked as 'To Do'?",
+        "query": {
+            "collection": "tasks",
+                "aggregate": [{"$match": {"status.text": "To Do"}},
+                {"$count": "total_tasks"}]
+        },
+        "response": {"total_tasks":8348}
+    },
+    {
+        "question": "Aggregation to Count Tasks Created in 2023",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$match": { "createdAt": { "$gte": { "$date": "2023-01-01T00:00:00.000Z" }, "$lt": { "$date": "2024-01-01T00:00:00.000Z" } } } },
+                { "$count": "total_tasks" }
+            ]
+        },
+        "response": {"total_tasks":37992}
+            
+    },
+    {
+        "question": "List out all tasks those are created on 21 feb 2025.",
+        "query": {
+            "collection": "tasks",
+            "filter": { "createdAt": { "$gte": { "$date": "2025-02-21T00:00:00.000Z" }, "$lt": { "$date": "2025-02-22T00:00:00.000Z" } } }, 
+            "projection": { "TaskName": 1, "_id": 0 } 
+        },
+        "response": [
+            { "TaskName": "Client's Comments (21/02/2025)" },
+            { "TaskName": "Handling Multiple database and Optimize ORM Queries" },
+            { "TaskName": "Text Slider" },
+            { "TaskName": "our collection section" },
+            { "TaskName": "New product" },
+            { "TaskName": "Banner updates" },
+            { "TaskName": "Create German Calculator Page" },
+            { "TaskName": "requesting an hour off today to leave early" },
+            { "TaskName": "Photos updates 21/02/2025" },
+            { "TaskName": "Home Page Design" },
+            { "TaskName": "https://www.upwork.com/nx/proposals/interview/uid/1892646489415331840" },
+            { "TaskName": "Final Changes" },
+            { "TaskName": "Final Changes" },
+            { "TaskName": "https://www.upwork.com/jobs/Website-Migration-Specialist_~021892787712101306484/" }
+          ]                 
+    },
+    {
+        "question": "List out all the records whose project id is '6571e7195470e64b120328d5'",
+        "query": {
+            "collection": "tasks",
+            "filter": { "ProjectID": "6571e7195470e64b120328d5" },
+            "projection": { "TaskName": 1, "_id": 0 }
+        },
+        "response": [
+            { "TaskName": "Add Steps in the Question Preview" },
+            { "TaskName": "Client Feedback 05/12/2023)" },
+            { "TaskName": "Spacing should be as per figma https://prnt.sc/Gj0HXNeSGYZS" },
+            { "TaskName": "In checkout page price is not displayed discount price if we select 3 pack" },
+            { "TaskName": "Image displayed stretch https://prnt.sc/WGCayiCyRgFZ" },
+            { "TaskName": "Amount should be displayed up 2 decimal value https://prnt.sc/Q2zmHXfd1JhT" },
+            { "TaskName": "In export user data: date and text field is not displayed when we export https://prnt.sc/RO_PZWeax0BM" },
+            { "TaskName": "Major issue : while adding queston it replace with previous questions" },
+            { "TaskName": "Add space between back and icon https://prnt.sc/7amzuo8TK5t1" },
+            { "TaskName": "In mobile responsive is not proper displayed for more check description" },
+            { "TaskName": "User Form : Required checkbox mark is not working https://prnt.sc/46F5FAwtLFNc" },
+            { "TaskName": "Question required functionality is not working" },
+            { "TaskName": "In button text should be center https://prnt.sc/vJF2oK4JakCZ" },
+            { "TaskName": "Question : Only first letter capital https://prnt.sc/qmSRMASF2P4X" },
+            { "TaskName": "Thank You Not Found https://prnt.sc/G90E9-2rc8oo" },
+            { "TaskName": "Add Question page" },
+            { "TaskName": "Analytics dashBoard" }
+          ]          
+    },
+    {
+        "question": "Find the task leader for following task name 'Add Steps in the Question Preview'.",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$match": { "TaskName": "Add Steps in the Question Preview" } },
+                { "$addFields": { "Task_Leader": { "$toObjectId": "$Task_Leader" } } },
+                { "$lookup": { "from": "users", "localField": "Task_Leader", "foreignField": "_id", "as": "leader_info" } },
+                { "$unwind": "$leader_info" },
+                { "$project": { "leader_info.Employee_Name": 1, "_id": 0 } }
+            ]
+        },
+        "response": {"leader_info":{"Employee_Name":"Vivek Patel"}}       
+    },
+    {
+        "question": "List all tasks under the 'Development' folder in sprintArray",
+        "query": {
+            "collection": "tasks",
+            "filter": { "sprintArray.folderName": "Development" },
+            "projection": { "TaskName": 1, "_id": 0 }
+        },
+        "response": [
+            { "TaskName": "Add Steps in the Question Preview" },
+            { "TaskName": "Client Feedback 05/12/2023)" },
+            { "TaskName": "Spacing should be as per figma https://prnt.sc/Gj0HXNeSGYZS" },
+            { "TaskName": "In checkout page price is not displayed discount price if we select 3 pack" },
+            { "TaskName": "Image displayed stretch https://prnt.sc/WGCayiCyRgFZ" },
+            { "TaskName": "Amount should be displayed up 2 decimal value https://prnt.sc/Q2zmHXfd1JhT" }
+          ]          
+    },
+    {
+        "question": "Count how many tasks are there in the 'Development' sprint",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$match": { "sprintArray.folderName": "Development" } },
+                { "$count": "total_tasks" }
+            ]
+        },
+        "response": {"total_tasks":11292}
+    },
+    {
+        "question": "Group tasks by all different folderName values in sprintArray",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$unwind": "$sprintArray" },
+                { "$group": { "_id": "$sprintArray.folderName", "task_count": { "$sum": 1 } } }
+            ]
+        },
+        "response": [
+            { "_id": "Danny Goldberg Speaks .com Website", "task_count": 11 },
+            { "_id": "Mobile App", "task_count": 15 },
+            { "_id": "Komal", "task_count": 1 },
+            { "_id": "Hetal", "task_count": 3 },
+            { "_id": "Leads", "task_count": 360 },
+            { "_id": "Karan Makwana", "task_count": 1 },
+            { "_id": "Portfolio", "task_count": 185 },
+            { "_id": "Development Shopify", "task_count": 55 },
+            { "_id": "Smit Patel", "task_count": 4 },
+            { "_id": "Salama WP website", "task_count": 1 },
+            { "_id": "Khushbu D", "task_count": 22 },
+            { "_id": "Custom Form Development", "task_count": 11 },
+            { "_id": "Dhruvisha", "task_count": 96 }
+          ]          
+    },
+    {
+        "question": "List all employees working on 'Alian Hr module' project.",
+        "query": {
+          "collection": "projects",
+          "aggregate": [
+            {
+              "$match": {
+                "ProjectName": "Alian Hr module"
+              }
+            },
+            {
+              "$lookup": {
+                "from": "users",
+                "let": {
+                  "assignees": {
+                    "$map": {
+                      "input": "$AssigneeUserId",
+                      "as": "id",
+                      "in": {
+                        "$toObjectId": "$$id"
+                      }
+                    }
+                  }
+                },
+                "pipeline": [
+                  {
+                    "$match": {
+                      "$expr": {
+                        "$in": ["$_id", "$$assignees"]
+                      }
+                    }
+                  },
+                  {
+                    "$project": {
+                      "Employee_Name": 1,
+                      "_id": 0
+                    }
+                  }
+                ],
+                "as": "employees"
+              }
+            },
+            {
+              "$unwind": "$employees"
+            },
+            {
+              "$project": {
+                "employees.Employee_Name": 1,
+                "_id": 0
+              }
+            }
+          ]
+        },
+        "response": [
+            { "Employee_Name": "Dhruvisha Jaiswal" },
+            { "Employee_Name": "Sagar Vekariya" },
+            { "Employee_Name": "Vivek Patel" },
+            { "Employee_Name": "Rashesh Makwana" },
+            { "Employee_Name": "Utkarshsinh Sodhaparmar" }
+          ]          
+      },
+      {
+        "question": "Who is leading the 'Alian Hr module' project?",
+        "query": {
+          "collection": "projects",
+          "aggregate": [
+            {
+              "$match": {
+                "ProjectName": "Alian Hr module"
+              }
+            },
+            {
+              "$lookup": {
+                "from": "users",
+                "let": {
+                  "leadUser": {
+                    "$map": {
+                      "input": "$LeadUserId",
+                      "as": "id",
+                      "in": {
+                        "$toObjectId": "$$id"
+                      }
+                    }
+                  }
+                },
+                "pipeline": [
+                  {
+                    "$match": {
+                      "$expr": {
+                        "$in": ["$_id", "$$leadUser"]
+                      }
+                    }
+                  },
+                  {
+                    "$project": {
+                      "Employee_Name": 1,
+                      "_id": 0
+                    }
+                  }
+                ],
+                "as": "leaders"
+              }
+            },
+            {
+              "$unwind": "$leaders"
+            },
+            {
+              "$project": {
+                "leaders.Employee_Name": 1,
+                "_id": 0
+              }
+            }
+          ]
+        },
+        "response": {"Employee_Name":"Rashesh Makwana"}
+      },
+      {
+        "question": "Which project category does 'Ahmad Yousuf - Hr- Expert Web developer for Shopify' belong to?",
+        "query": {
+          "collection": "projects",
+          "aggregate": [
+            {
+              "$match": {
+                "ProjectName": "Ahmad Yousuf - Hr- Expert Web developer for Shopify"
+              }
+            },
+            {
+              "$project": {
+                "ProjectCategory": 1,
+                "_id": 0
+              }
+            }
+          ]
+        },
+        "response": {"ProjectCategory":"Shopify - Hourly"}  
+      },
+      {
+        "question": "List out all the projects that are lead by the leader id '6571e715e5d066d39dd01ae2'.",
+        "query": {
+          "collection": "projects",
+          "aggregate": [
+            {
+              "$match": {
+                "LeadUserId": "6571e715e5d066d39dd01ae2"
+              }
+            },
+            {
+              "$project": {
+                "ProjectName": 1,
+                "_id": 0
+              }
+            }
+          ]
+        },
+        "response": [
+            { "ProjectName": "Alian Hr module" },
+            { "ProjectName": "Chatbot for Alianhub" },
+            { "ProjectName": "Fx - SJJA Apparel app comissionfy updates (Bruno)" },
+            { "ProjectName": "Alian Infinity Accounting" },
+            { "ProjectName": "Fx-Alian Sales" },
+            { "ProjectName": "training reports" },
+            { "ProjectName": "Alianhub support" },
+            { "ProjectName": "python test task" },
+            { "ProjectName": "Hr - UX/UI Developer [Stephanie Dale]" }
+          ]          
+      },
+      {
+        "question": "List out all the projects that are lead by the leader name 'Rashesh Makwana'.",
+        "query": {
+          "collection": "users",
+          "aggregate": [
+            {
+              "$match": {
+                "Employee_Name": "Rashesh Makwana"
+              }
+            },
+            {
+              "$lookup": {
+                "from": "projects",
+                "localField": "_id",
+                "foreignField": "LeadUserId",
+                "as": "projects"
+              }
+            },
+            {
+              "$unwind": "$projects"
+            },
+            {
+              "$project": {
+                "projects.ProjectName": 1,
+                "_id": 0
+              }
+            }
+          ]
+        },
+        "response": [
+            {"projects":{"ProjectName":"Cloversoftware"}},
+            {"projects":{"ProjectName":"Test Task: Develop PDP"}},
+            {"projects":{"ProjectName":"Tds calculater"}}
+        ]
+      },
+      {
+        "question": "Retrieve tasks under the project 'Alian Hub Design & Development' that have a 'MEDIUM' priority and were created last month.",
+        "query": {
+          "collection": "tasks",
+          "filter": {
+            "ProjectID": {
+              "$in": [
+                {
+                  "$lookup": {
+                    "from": "projects",
+                    "localField": "ProjectID",
+                    "foreignField": "_id",
+                    "as": "project_info"
+                  }
+                }
+              ]
+            },
+            "project_info.ProjectName": "Alian Hub Design & Development",
+            "Task_Priority": "MEDIUM",
+            "createdAt": {
+              "$gte": { "$date": "2025-02-01T00:00:00.000Z" },
+              "$lt": { "$date": "2025-03-01T00:00:00.000Z" }
+            }
+          },
+          "projection": {
+            "TaskName": 1,
+            "Task_Priority": 1,
+            "createdAt": 1,
+            "_id": 0
+          }
+        },
+        "response": [
+            {
+              "TaskName": "GITEX 2024 Page Design",
+              "Task_Priority": "MEDIUM",
+              "createdAt": "2025-02-07T04:38:15.496Z"
+            },
+            {
+              "TaskName": "Create Design for Email Templates ALL template;s like verify, reset password, etc.",
+              "Task_Priority": "MEDIUM",
+              "createdAt": "2025-02-17T05:38:40.200Z"
+            },
+            {
+              "TaskName": "Required to update design at plan page",
+              "Task_Priority": "MEDIUM",
+              "createdAt": "2025-02-17T05:44:10.996Z"
+            }
+          ]          
+      },
+      {
+        "question": "List out the employee whose last name is 'Joshi'",
+        "Generated_MongoDB_Query": {
+            "collection": "users",
+            "filter": {
+                "Employee_LName": "Joshi"
+            },
+            "projection": {
+                "Employee_Name": 1,
+                "_id": 0
+            }
+        },
+        "response": [
+            { "Employee_Name": "Shiv Joshi" },
+            { "Employee_Name": "Viren Joshi" },
+            { "Employee_Name": "Abhishek Joshi" },
+            { "Employee_Name": "Vikas Joshi" }
+        ]
+      },
+      {
+        "question": "List out all users who have task status 'To Do'",
+        "query": {
+            "collection": "tasks",
+            "aggregate": [
+                { "$lookup": { "from": "users", "localField": "AssigneeUserId", "foreignField": "_id", "as": "user_info" } },
+                { "$unwind": "$user_info" },
+                { "$match": { "status.text": "To Do" } },
+                { "$project": { "user_info.Employee_Name": 1, "status.text": 1, "_id": 0 } }
+            ]
+        },
+        "response": [
+            {
+              "status": { "text": "To Do" },
+              "user_info": { "Employee_Name": "Disha Patel" }
+            },
+            {
+              "status": { "text": "To Do" },
+              "user_info": { "Employee_Name": "Ami Dalwadi" }
+            },
+            {
+              "status": { "text": "To Do" },
+              "user_info": { "Employee_Name": "Disha Patel" }
+            },
+            {
+              "status": { "text": "To Do" },
+              "user_info": { "Employee_Name": "Ami Dalwadi" }
+            },
+            {
+              "status": { "text": "To Do" },
+              "user_info": { "Employee_Name": "Disha Patel" }
+            },
+            {
+              "status": { "text": "To Do" },
+              "user_info": { "Employee_Name": "Disha Patel" }
+            },
+            {
+              "status": { "text": "To Do" },
+              "user_info": { "Employee_Name": "Foram Dhanak" }
+            },
+            {
+              "status": { "text": "To Do" },
+              "user_info": { "Employee_Name": "Komal Vadaliya" }
+            },
+            {
+              "status": { "text": "To Do" },
+              "user_info": { "Employee_Name": "Ami Dalwadi" }
+            },
+            {
+              "status": { "text": "To Do" },
+              "user_info": { "Employee_Name": "Manthan Parmar" }
+            }
+          ]          
+      },
+      {
+        "question": "What is the id of employee name 'Shiv Joshi'?",
+        "query": {
+          "collection": "users",
+          "filter": {
+            "Employee_Name": "Shiv Joshi"
+          },
+          "projection": {
+            "_id": 1
+          }
+        },
+        "response": {"_id": "6571e715e5d066d39dd01b68"}
+      }
+]    
+
