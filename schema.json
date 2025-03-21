@@ -1,270 +1,88 @@
 {
-    tasks: {
-        "legacyId": {
-            type: String,
-            required: false
-        },
-        'TaskName': {
-            type: String,
-            required: true,
-        },
-        'TaskKey': {
-            type: String,
-            required: true,
-        },
-        'AssigneeUserId': {
-            type: Array,
-            default: [],
-            required: false,
-        },
-        'watchers': {
-            type: Array,
-            default: [],
-            required: false,
-        },
-        'DueDate': {
-            type: Date,
-            required: false,
-        },
-        'dueDateDeadLine': {
-            type: Array,
-            default: [],
-            required: false,
-        },
-        'TaskType': {
-            type: String,
-            required: true,
-        },
-        'TaskTypeKey': {
-            type: Number,
-            required: true,
-        },
-        'ParentTaskId': {
-            type: String,
-            required: false,
-        },
-        'ProjectID': {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-        },
-        'CompanyId': {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-        },
-        'status': {
-            type: Object,
-            required: true,
-        },
-        'isParentTask': {
-            type: Boolean,
-            required: true,
-        },
-        'Task_Leader': {
-            type: String,
-            required: true,
-        },
-        'sprintArray': {
-            type: Object,
-            required: true,
-        },
-        'Task_Priority': {
-            type: String,
-            required: true,
-        },
-        'deletedStatusKey': {
-            type: Number,
-            required: true,
-        },
-        'sprintId': {
-            type:  mongoose.Schema.Types.ObjectId,
-            required: true,
-        },
-        'groupByAssigneeIndex': {
-            type: Number,
-            required: false,
-        },
-        'groupByPriorityIndex': {
-            type: Number,
-            required: false,
-        },
-        'groupByDueDateIndex': {
-            type: Number,
-            required: false,
-        },
-        'groupByStatusIndex': {
-            type: Number,
-            required: false,
-        },
-        'queueListArray': {
-            type: Array,
-            required: false,
-        },
-        'attachments': {
-            type: Array,
-            required: false,
-        },
-        'checklistArray': {
-            type: Array,
-            required: false,
-        },
-        'tagsArray': {
-            type: Array,
-            required: false,
-        },
-        'favouriteTasks': {
-            type: Array,
-            required: false,
-        },
-        'subTasks': {
-            type: Number,
-            required: false,
-        },
-        'rawDescription': {
-            type: String,
-            required: false,
-        },
-        'description': {
-            type: String,
-            required: false,
-        },
-        'statusType': {
-            type: String,
-            required: true,
-        },
-        'startDate': {
-            type: Date,
-            required: false,
-        },
-        'statusKey': {
-            type: Number,
-            required: true,
-        },
-        'updateToken':{
-            type: Object,
-            required: false,
-        },
-        'islocalSnapStop':{
-            type: Boolean,
-            required: false,
-        },
-        'folderObjId': {
-            type: mongoose.Schema.Types.ObjectId,
-            required: false,
-        },
-        descriptionBlock: {
-            type : Object,
-            required: false
-        },
-        customField: {
-            type: Object,
-            required: false
-        },
-        lastMessage: {
-            type: Date,
-            required:false
-        },
-        message: {
-            type: String,
-            required: false
-        }
+    "users": {
+        "legacyId": { "type": "String", "required": false },
+        "Employee_Email": { "type": "String", "required": false },
+        "Employee_FName": { "type": "String", "required": false },
+        "Employee_LName": { "type": "String", "required": false },
+        "Employee_Name": { "type": "String", "required": false },
+        "Time_Format": { "type": "String", "required": false },
+        "Time_Zone": { "type": "String", "required": false },
+        "isActive": { "type": "Boolean", "required": false },
+        "isOnline": { "type": "Boolean", "required": false },
+        "verificationToken": { "type": "String", "required": false },
+        "verificationTokenTime": { "type": "Date", "required": false },
+        "AssignCompany": { "type": "Array", "required": false },
+        "Employee_profileImage": { "type": "String", "required": false },
+        "Employee_profileImageURL": { "type": "String", "required": false },
+        "webTokens": { "type": "Array", "required": false },
+        "forgotPasswordToken": { "type": "String", "required": false },
+        "forgotPasswordTokenTime": { "type": "Date", "required": false },
+        "lastActive": { "type": "Date", "required": false },
+        "isEmailVerified": { "type": "Boolean", "required": true },
+        "customerId": { "type": "String", "required": false },
+        "isProductOwner": { "type": "Boolean", "required": false },
+        "isVesionUpdate": { "type": "Boolean", "required": false },
+        "tour": { "type": "Object", "required": false },
+        "languageCode": { "type": "String", "required": false, "default": "en" }
     },
-   users: {
-        "legacyId": {
-            type: String,
-            required: false
-        },
-        Employee_Email: {
-            type: String,
-            required: false,
-        },
-        Employee_FName: {
-            type: String,
-            required: false,
-        },
-        Employee_LName: {
-            type: String,
-            required: false,
-        },
-        Employee_Name: {
-            type: String,
-            required: false,
-        },
-        Time_Format: {
-            type: String,
-            required: false,
-        },
-        Time_Zone: {
-            type: String,
-            required: false,
-        },
-        isActive: {
-            type: Boolean,
-            required: false,
-        },
-        isOnline: {
-            type: Boolean,
-            required: false,
-        },
-        verificationToken: {
-            type: String,
-            required: false
-        },
-        verificationTokenTime: {
-            type: Date,
-            required: false
-        },
-        AssignCompany: {
-            type: Array,
-            required: false
-        },
-        Employee_profileImage: {
-            type: String,
-            required: false
-        },
-        Employee_profileImageURL: {
-            type: String,
-            required: false
-        },
-        webTokens: {
-            type: Array,
-            required: false
-        },
-        forgotPasswordToken: {
-            type: String,
-            required: false
-        },
-        forgotPasswordTokenTime: {
-            type: Date,
-            required: false
-        },
-        lastActive: {
-            type: Date,
-            required: false
-        },
-        isEmailVerified: {
-            type: Boolean,
-            required: true
-        },
-        customerId: {
-            type: String,
-            required: false
-        },
-        isProductOwner: {
-            type: Boolean,
-            required: false
-        },
-        isVesionUpdate: {
-            type: Boolean,
-            required: false
-        },
-        tour: {
-            type: Object,
-            required: false
-        },
-        languageCode: {
-            type: String,
-            required: false,
-            default: "en"
-        }
+    
+    "tasks": {
+        "legacyId": { "type": "String", "required": false },
+        "TaskName": { "type": "String", "required": true },
+        "TaskKey": { "type": "String", "required": true },
+        "AssigneeUserId": { "type": "Array", "default": [], "required": false },
+        "watchers": { "type": "Array", "default": [], "required": false },
+        "DueDate": { "type": "Date", "required": false },
+        "dueDateDeadLine": { "type": "Array", "default": [], "required": false },
+        "TaskType": { "type": "String", "required": true },
+        "TaskTypeKey": { "type": "Number", "required": true },
+        "ParentTaskId": { "type": "String", "required": false },
+        "ProjectID": { "type": "ObjectId", "required": true },
+        "CompanyId": { "type": "ObjectId", "required": true },
+        "status": { "type": "Object", "required": true },
+        "isParentTask": { "type": "Boolean", "required": true },
+        "Task_Leader": { "type": "String", "required": true },
+        "sprintArray": { "type": "Object", "required": true },
+        "Task_Priority": { "type": "String", "required": true },
+        "deletedStatusKey": { "type": "Number", "required": true },
+        "sprintId": { "type": "ObjectId", "required": true },
+        "groupByAssigneeIndex": { "type": "Number", "required": false },
+        "groupByPriorityIndex": { "type": "Number", "required": false },
+        "groupByDueDateIndex": { "type": "Number", "required": false },
+        "groupByStatusIndex": { "type": "Number", "required": false },
+        "queueListArray": { "type": "Array", "required": false },
+        "attachments": { "type": "Array", "required": false },
+        "checklistArray": { "type": "Array", "required": false },
+        "tagsArray": { "type": "Array", "required": false },
+        "favouriteTasks": { "type": "Array", "required": false },
+        "subTasks": { "type": "Number", "required": false },
+        "rawDescription": { "type": "String", "required": false },
+        "description": { "type": "String", "required": false },
+        "statusType": { "type": "String", "required": true },
+        "startDate": { "type": "Date", "required": false },
+        "statusKey": { "type": "Number", "required": true },
+        "updateToken": { "type": "Object", "required": false },
+        "islocalSnapStop": { "type": "Boolean", "required": false },
+        "folderObjId": { "type": "ObjectId", "required": false },
+        "descriptionBlock": { "type": "Object", "required": false },
+        "customField": { "type": "Object", "required": false },
+        "lastMessage": { "type": "Date", "required": false },
+        "message": { "type": "String", "required": false }
+    },
+
+    "projects": {
+        "_id": { "type": "ObjectId", "required": true },
+        "legacyId": { "type": "String", "required": true },
+        "AssigneeUserId": { "type": "String", "default": [], "required": false },
+        "CompanyId": { "type": "String", "required": true },
+        "LeadUserId": { "type": "Array", "default": [], "required": false },
+        "ProjectCategory": { "type": "String", "required": true },
+        "ProjectCode": { "type": "String", "required": true },
+        "ProjectCurrency": { "type": "Object", "required": true },
+        "ProjectName": { "type": "String", "required": true },
+        "ProjectType": { "type": "String", "required": false },
+        "description": { "type": "String", "required": false },
+        "projectCreatedBy": { "type": "String", "required": true },
+        "sprintsfolders": { "type": "Object", "required": true }
     }
 }

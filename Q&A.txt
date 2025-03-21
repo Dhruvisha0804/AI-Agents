@@ -57,3 +57,38 @@ What tasks are pending after February 15th?
 List all tasks that have "API" in their description and their current status.
 Which tasks have a higher priority but have not yet been marked "completed"?
 What tasks assigned to Nathan have not been started yet?
+
+
+
+
+
+Asked questions:
+
+How many tasks are there by each different status?
+how many distinct tasks are there?
+Show all tasks assigned to '6571e715e5d066d39dd01ae6'
+Find all tasks with status "To Do"
+How many tasks are there which status marked as 'To Do'?
+list all the task of 'Shiv Joshi' which status marked as 'In Progress'
+List out the employee whose last name is 'Joshi'
+List out the employee whose name contains 'Dhru'
+Count of tasks which are created in 2023.
+List out all tasks those are created on 21 feb 2025
+Total tasks which are created on 21 feb 2025.
+Give me all the tasks that are created on 20 December 2024 and having status as ‘In Progress’.
+Count of all tasks that having ‘MEDIUM’ task priority.
+Find the employee’s name whose _id is ‘6571e71590622593f7e24f23’.
+List out tasks which are under project ID ‘6571e7195470e64b120328d5’.
+Find the task leader for following task name ‘Add Steps in the Question Preview’.
+Please provide list of tasks which are comes under ‘Development’ sprint.
+Total count of tasks which are comes under ‘Development’ sprint.
+Group by all tasks count by each sprints’ foldernames .
+Provide top 5 sprint’s foldername that having maximum tasks created.
+list out all the tasks which are associated with 'Alian Hr module' project.
+list out all the projects that are led by the leader id 'Rashesh Makwana'.
+list out all the projects that are led by the leader id '6571e715e5d066d39dd01ae2'.
+Which project category does 'Ahmad Yousuf - Hr- Expert Web developer for Shopify' belong to?
+how many tasks were created from 21 feb 2025 to 28 feb 2025?
+Show all tasks in the 'Development' sprint folder that were created after February 15, 2025.
+Retrieve tasks under the project 'Ahmad Yousuf - Hr- Expert Web developer for Shopify' that have a high priority and were created this month.
+Retrieve tasks under the project 'Alian Hub Design & Development' that have a 'MEDIUM' priority and status is 'in progress'

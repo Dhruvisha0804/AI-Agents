@@ -1,0 +1,127 @@
+Prompt:
+Schema Information:
+Users Collection:
+- _id: ObjectId (required)
+- legacyId: String
+- Employee_Email: String
+- Employee_FName: String
+- Employee_LName: String
+- Employee_Name: String
+
+Tasks Collection:
+- _id: ObjectId (required)
+- legacyId: String
+- TaskName: String (required)
+- AssigneeUserId: Array
+- TaskType: String (required)
+- ProjectID: ObjectId (required)
+- status: Object (required)
+- Task_Leader: String (required)
+- sprintArray: Object (required)
+- Task_Priority: String (required)
+
+Projects Collection:
+- _id: ObjectId (required)
+- legacyId: String (required)
+- AssigneeUserId: String
+- CompanyId: String (required)
+- LeadUserId: Array
+- ProjectCategory: String (required)
+- ProjectName: String (required)
+- ProjectType: String
+- description: String
+- projectCreatedBy: String (required)
+- sprintsfolders: Object (required)
+
+Question: How many tasks are there by each different status?
+MongoDB Query: db.tasks.aggregate([ { $group: { _id: "$status.text", count: { $sum: 1 } } } ])
+
+Schema Information:
+(Same schema details as above)
+Question: How many tasks exist?
+MongoDB Query: db.tasks.aggregate([ { $count: "total_tasks" } ])
+
+Schema Information:
+(Same schema details as above)
+Question: List out all users who have task status 'done'.
+MongoDB Query: db.tasks.aggregate([ { $lookup: { from: "users", localField: "AssigneeUserId", foreignField: "_id", as: "user_info" } }, { $unwind: "$user_info" }, { $match: { "status.text": "Done" } }, { $project: { "user_info.Employee_Name": 1, "status.text": 1, _id: 0 } } ])
+
+Schema Information:
+(Same schema details as above)
+Question: Show all tasks assigned to '6571e715e5d066d39dd01b39'.
+MongoDB Query: db.tasks.find({ "AssigneeUserId": "6571e715e5d066d39dd01b39" }, { "TaskName": 1, _id: 0 })
+
+Schema Information:
+(Same schema details as above)
+Question: List all tasks for employee 'Shiv Joshi'.
+MongoDB Query: db.tasks.aggregate([ { $lookup: { from: "users", localField: "AssigneeUserId", foreignField: "_id", as: "user_info" } }, { $unwind: "$user_info" }, { $match: { "user_info.Employee_Name": "Shiv Joshi" } }, { $project: { "TaskName": 1, _id: 0 } } ])
+
+Schema Information:
+(Same schema details as above)
+Question: Find all tasks with status 'In Progress'.
+MongoDB Query: db.tasks.find({ "status.text": "In Progress" }, { "TaskName": 1, _id: 0 })
+
+Schema Information:
+(Same schema details as above)
+Question: Filter out the employee whose '_id' ends with '68'.
+MongoDB Query: db.users.find({ $expr: { $regexMatch: { input: { $toString: "$_id" }, regex: "68$" } } }, { "Employee_Name": 1, _id: 1 })
+
+Schema Information:
+(Same schema details as above)
+Question: Aggregation to Count Tasks Created on a Specific Date (2023).
+MongoDB Query: db.tasks.aggregate([ { $match: { createdAt: { $gte: { $date: "2023-01-01T00:00:00.000Z" }, $lt: { $date: "2024-01-01T00:00:00.000Z" } } } }, { $count: "total_tasks" } ])
+
+Schema Information:
+(Same schema details as above)
+Question: Query for Tasks Created on a Specific Date (2025-01-01).
+MongoDB Query: db.tasks.find({ createdAt: { $gte: { $date: "2025-01-01T00:00:00.000Z" }, $lt: { $date: "2025-01-02T00:00:00.000Z" } } }, { "TaskName": 1, _id: 0 })
+
+Schema Information:
+(Same schema details as above)
+Question: List all the records whose project id is '6571e7195470e64b120328d5'.
+MongoDB Query: db.tasks.find({ "ProjectID": "6571e7195470e64b120328d5" }, { "TaskName": 1, _id: 0 })
+
+Schema Information:
+(Same schema details as above)
+Question: Find the task leader using the task name.
+MongoDB Query: db.tasks.aggregate([ { $match: { "TaskName": "Task Name Here" } }, { $addFields: { "Task_Leader": { $toObjectId: "$Task_Leader" } } }, { $lookup: { from: "users", localField: "Task_Leader", foreignField: "_id", as: "leader_info" } }, { $unwind: "$leader_info" }, { $project: { "leader_info.Employee_Name": 1, _id: 0 } } ])
+
+Schema Information:
+(Same schema details as above)
+Question: List all tasks under the 'Development' folder in sprintArray.
+MongoDB Query: db.tasks.find({ "sprintArray.folderName": "Development" }, { "TaskName": 1, _id: 0 })
+
+Schema Information:
+(Same schema details as above)
+Question: Count how many tasks are there in the 'Development' sprint.
+MongoDB Query: db.tasks.aggregate([ { $match: { "sprintArray.folderName": "Development" } }, { $count: "total_tasks" } ])
+
+Schema Information:
+(Same schema details as above)
+Question: Group tasks by all different folderName values in sprintArray.
+MongoDB Query: db.tasks.aggregate([ { $unwind: "$sprintArray" }, { $group: { _id: "$sprintArray.folderName", task_count: { $sum: 1 } } } ])
+
+Schema Information:
+(Same schema details as above)
+Question: List all employees working on 'Alian Hr module' project.
+MongoDB Query: db.projects.aggregate([ { $match: { "ProjectName": "Alian Hr module" } }, { $lookup: { from: "users", let: { assignees: { $map: { input: "$AssigneeUserId", as: "id", in: { $toObjectId: "$$id" } } } }, pipeline: [ { $match: { $expr: { $in: ["$_id", "$$assignees"] } } }, { $project: { "Employee_Name": 1, _id: 0 } } ], as: "employees" } }, { $unwind: "$employees" }, { $project: { "employees.Employee_Name": 1, _id: 0 } } ])
+
+Schema Information:
+(Same schema details as above)
+Question: Who is leading the 'Alian Hr module' project?
+MongoDB Query: db.projects.aggregate([ { $match: { "ProjectName": "Alian Hr module" } }, { $lookup: { from: "users", let: { leadUser: { $map: { input: "$LeadUserId", as: "id", in: { $toObjectId: "$$id" } } } }, pipeline: [ { $match: { $expr: { $in: ["$_id", "$$leadUser"] } } }, { $project: { "Employee_Name": 1, _id: 0 } } ], as: "leaders" } }, { $unwind: "$leaders" }, { $project: { "leaders.Employee_Name": 1, _id: 0 } } ])
+
+Schema Information:
+(Same schema details as above)
+Question: Which project category does 'Alian Hr module' belong to?
+MongoDB Query: db.projects.aggregate([ { $match: { "ProjectName": "Alian Hr module" } }, { $project: { "ProjectCategory": 1, _id: 0 } } ])
+
+Schema Information:
+(Same schema details as above)
+Question: List out all the projects that are led by the leader id '6571e715e5d066d39dd01ae2'.
+MongoDB Query: db.projects.aggregate([ { $match: { "LeadUserId": "6571e715e5d066d39dd01ae2" } }, { $project: { "ProjectName": 1, _id: 0 } } ])
+
+Schema Information:
+(Same schema details as above)
+Question: List out all the projects that are led by the leader id 'Rashesh Makwana'.
+MongoDB Query: db.users.aggregate([ { $match: { "Employee_Name": "Rashesh Makwana" } }, { $lookup: { from: "projects", localField: "_id", foreignField: "LeadUserId", as: "projects" } }, { $unwind: "$projects" }, { $project: { "projects.ProjectName": 1, _id: 0 } } ])

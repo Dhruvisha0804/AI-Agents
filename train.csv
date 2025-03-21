@@ -1,0 +1,377 @@
+question,query,response,text
+Count how many tasks are there in the 'Development' sprint,"{'collection': 'tasks', 'aggregate': [{'$match': {'sprintArray.folderName': 'Development'}}, {'$count': 'total_tasks'}]}",{'total_tasks': 11292},"
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:Count how many tasks are there in the 'Development' sprint
+###Query:
+{'collection': 'tasks', 'aggregate': [{'$match': {'sprintArray.folderName': 'Development'}}, {'$count': 'total_tasks'}]}
+###Response:
+{'total_tasks': 11292}"
+How many tasks exist?,"{'collection': 'tasks', 'aggregate': [{'$count': 'total_tasks'}]}",{'total_tasks': 66543},"
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:How many tasks exist?
+###Query:
+{'collection': 'tasks', 'aggregate': [{'$count': 'total_tasks'}]}
+###Response:
+{'total_tasks': 66543}"
+Group tasks by all different folderName values in sprintArray,"{'collection': 'tasks', 'aggregate': [{'$unwind': '$sprintArray'}, {'$group': {'_id': '$sprintArray.folderName', 'task_count': {'$sum': 1}}}]}","[{'_id': 'Danny Goldberg Speaks .com Website', 'task_count': 11}, {'_id': 'Mobile App', 'task_count': 15}, {'_id': 'Komal', 'task_count': 1}, {'_id': 'Hetal', 'task_count': 3}, {'_id': 'Leads', 'task_count': 360}, {'_id': 'Karan Makwana', 'task_count': 1}, {'_id': 'Portfolio', 'task_count': 185}, {'_id': 'Development Shopify', 'task_count': 55}, {'_id': 'Smit Patel', 'task_count': 4}, {'_id': 'Salama WP website', 'task_count': 1}, {'_id': 'Khushbu D', 'task_count': 22}, {'_id': 'Custom Form Development', 'task_count': 11}, {'_id': 'Dhruvisha', 'task_count': 96}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:Group tasks by all different folderName values in sprintArray
+###Query:
+{'collection': 'tasks', 'aggregate': [{'$unwind': '$sprintArray'}, {'$group': {'_id': '$sprintArray.folderName', 'task_count': {'$sum': 1}}}]}
+###Response:
+[{'_id': 'Danny Goldberg Speaks .com Website', 'task_count': 11}, {'_id': 'Mobile App', 'task_count': 15}, {'_id': 'Komal', 'task_count': 1}, {'_id': 'Hetal', 'task_count': 3}, {'_id': 'Leads', 'task_count': 360}, {'_id': 'Karan Makwana', 'task_count': 1}, {'_id': 'Portfolio', 'task_count': 185}, {'_id': 'Development Shopify', 'task_count': 55}, {'_id': 'Smit Patel', 'task_count': 4}, {'_id': 'Salama WP website', 'task_count': 1}, {'_id': 'Khushbu D', 'task_count': 22}, {'_id': 'Custom Form Development', 'task_count': 11}, {'_id': 'Dhruvisha', 'task_count': 96}]"
+Filter out the employee whose '_id' ends with '68',"{'collection': 'users', 'filter': {'$expr': {'$regexMatch': {'input': {'$toString': '$_id'}, 'regex': '68$'}}}, 'projection': {'Employee_Name': 1, '_id': 1}}","[{'_id': '6571e715e5d066d39dd01b68', 'Employee_Name': 'Shiv Joshi'}, {'_id': '6774d30e5290206723656a68', 'Employee_Name': 'nidhi vasava'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:Filter out the employee whose '_id' ends with '68'
+###Query:
+{'collection': 'users', 'filter': {'$expr': {'$regexMatch': {'input': {'$toString': '$_id'}, 'regex': '68$'}}}, 'projection': {'Employee_Name': 1, '_id': 1}}
+###Response:
+[{'_id': '6571e715e5d066d39dd01b68', 'Employee_Name': 'Shiv Joshi'}, {'_id': '6774d30e5290206723656a68', 'Employee_Name': 'nidhi vasava'}]"
+Show all tasks assigned to '6571e715e5d066d39dd01b39',"{'collection': 'tasks', 'filter': {'AssigneeUserId': '6571e715e5d066d39dd01b39'}, 'projection': {'TaskName': 1, '_id': 0}}","[{'TaskName': 'some design changes to match the quiz frontend'}, {'TaskName': 'welcome screen'}, {'TaskName': 'Dashboard Design'}, {'TaskName': 'Next 4 changes'}, {'TaskName': 'understand requirements'}, {'TaskName': 'Product Recommendations screen design'}, {'TaskName': 'Add Quiz'}, {'TaskName': 'New changes'}, {'TaskName': 'Client feedback on the design: Admin and Result page.'}, {'TaskName': 'Quiz Responses'}, {'TaskName': 'Add question'}, {'TaskName': 'Advanced filter Post Design'}, {'TaskName': 'Automation Post Design'}, {'TaskName': 'Time Tracker Post Design'}, {'TaskName': 'Updated Group By Design and add Chat in Group by'}, {'TaskName': 'Alian Hub Views Post'}, {'TaskName': 'Custom Form Post Design'}, {'TaskName': 'CodeCanyon Banners design'}, {'TaskName': 'General Setting'}, {'TaskName': 'Date Selection screen'}, {'TaskName': 'Changes in all screen'}, {'TaskName': 'Question edit screen'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:Show all tasks assigned to '6571e715e5d066d39dd01b39'
+###Query:
+{'collection': 'tasks', 'filter': {'AssigneeUserId': '6571e715e5d066d39dd01b39'}, 'projection': {'TaskName': 1, '_id': 0}}
+###Response:
+[{'TaskName': 'some design changes to match the quiz frontend'}, {'TaskName': 'welcome screen'}, {'TaskName': 'Dashboard Design'}, {'TaskName': 'Next 4 changes'}, {'TaskName': 'understand requirements'}, {'TaskName': 'Product Recommendations screen design'}, {'TaskName': 'Add Quiz'}, {'TaskName': 'New changes'}, {'TaskName': 'Client feedback on the design: Admin and Result page.'}, {'TaskName': 'Quiz Responses'}, {'TaskName': 'Add question'}, {'TaskName': 'Advanced filter Post Design'}, {'TaskName': 'Automation Post Design'}, {'TaskName': 'Time Tracker Post Design'}, {'TaskName': 'Updated Group By Design and add Chat in Group by'}, {'TaskName': 'Alian Hub Views Post'}, {'TaskName': 'Custom Form Post Design'}, {'TaskName': 'CodeCanyon Banners design'}, {'TaskName': 'General Setting'}, {'TaskName': 'Date Selection screen'}, {'TaskName': 'Changes in all screen'}, {'TaskName': 'Question edit screen'}]"
+List all tasks under the 'Development' folder in sprintArray,"{'collection': 'tasks', 'filter': {'sprintArray.folderName': 'Development'}, 'projection': {'TaskName': 1, '_id': 0}}","[{'TaskName': 'Add Steps in the Question Preview'}, {'TaskName': 'Client Feedback 05/12/2023)'}, {'TaskName': 'Spacing should be as per figma https://prnt.sc/Gj0HXNeSGYZS'}, {'TaskName': 'In checkout page price is not displayed discount price if we select 3 pack'}, {'TaskName': 'Image displayed stretch https://prnt.sc/WGCayiCyRgFZ'}, {'TaskName': 'Amount should be displayed up 2 decimal value https://prnt.sc/Q2zmHXfd1JhT'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:List all tasks under the 'Development' folder in sprintArray
+###Query:
+{'collection': 'tasks', 'filter': {'sprintArray.folderName': 'Development'}, 'projection': {'TaskName': 1, '_id': 0}}
+###Response:
+[{'TaskName': 'Add Steps in the Question Preview'}, {'TaskName': 'Client Feedback 05/12/2023)'}, {'TaskName': 'Spacing should be as per figma https://prnt.sc/Gj0HXNeSGYZS'}, {'TaskName': 'In checkout page price is not displayed discount price if we select 3 pack'}, {'TaskName': 'Image displayed stretch https://prnt.sc/WGCayiCyRgFZ'}, {'TaskName': 'Amount should be displayed up 2 decimal value https://prnt.sc/Q2zmHXfd1JhT'}]"
+List out the employee whose last name is 'Joshi',,"[{'Employee_Name': 'Shiv Joshi'}, {'Employee_Name': 'Viren Joshi'}, {'Employee_Name': 'Abhishek Joshi'}, {'Employee_Name': 'Vikas Joshi'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:List out the employee whose last name is 'Joshi'
+###Response:
+[{'Employee_Name': 'Shiv Joshi'}, {'Employee_Name': 'Viren Joshi'}, {'Employee_Name': 'Abhishek Joshi'}, {'Employee_Name': 'Vikas Joshi'}]"
+list all the task of 'Shiv Joshi' which status marked as 'In Progress',"{'collection': 'tasks', 'aggregate': [{'$lookup': {'from': 'users', 'localField': 'AssigneeUserId', 'foreignField': '_id', 'as': 'user_info'}}, {'$unwind': '$user_info'}, {'$match': {'user_info.Employee_Name': 'Shiv Joshi', 'status.text': 'In Progress'}}, {'$project': {'TaskName': 1, '_id': 0}}]}","[{'TaskName': 'Audio record limit'}, {'TaskName': 'Snapshot optimization'}, {'TaskName': 'Additional 2: Create and sent certificate as per attached'}, {'TaskName': 'fvrduirghsbvsgbjfughyrf'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:list all the task of 'Shiv Joshi' which status marked as 'In Progress'
+###Query:
+{'collection': 'tasks', 'aggregate': [{'$lookup': {'from': 'users', 'localField': 'AssigneeUserId', 'foreignField': '_id', 'as': 'user_info'}}, {'$unwind': '$user_info'}, {'$match': {'user_info.Employee_Name': 'Shiv Joshi', 'status.text': 'In Progress'}}, {'$project': {'TaskName': 1, '_id': 0}}]}
+###Response:
+[{'TaskName': 'Audio record limit'}, {'TaskName': 'Snapshot optimization'}, {'TaskName': 'Additional 2: Create and sent certificate as per attached'}, {'TaskName': 'fvrduirghsbvsgbjfughyrf'}]"
+Find all tasks with status 'To Do',"{'collection': 'tasks', 'filter': {'status.text': 'To Do'}, 'projection': {'TaskName': 1, '_id': 0}}","[{'TaskName': 'create quiz welcome page'}, {'TaskName': 'create question page'}, {'TaskName': 'quiz list page'}, {'TaskName': 'August 2024'}, {'TaskName': 'January 2024'}, {'TaskName': 'July 2024'}, {'TaskName': 'May 2024'}, {'TaskName': 'April 2024'}, {'TaskName': 'February 2024'}, {'TaskName': 'December 2023'}, {'TaskName': 'Result page'}, {'TaskName': 'add Form'}, {'TaskName': 'Credentials'}, {'TaskName': 'June 2024'}, {'TaskName': 'Welcome screen'}, {'TaskName': 'add question'}, {'TaskName': 'March 2024'}, {'TaskName': 'Najm Collection product description images'}, {'TaskName': 'Tabby Model Issue'}, {'TaskName': 'Meeting with JIM'}, {'TaskName': 'Box Height not match with the live theme. https://prnt.sc/uz2d-iqUgiUR'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:Find all tasks with status 'To Do'
+###Query:
+{'collection': 'tasks', 'filter': {'status.text': 'To Do'}, 'projection': {'TaskName': 1, '_id': 0}}
+###Response:
+[{'TaskName': 'create quiz welcome page'}, {'TaskName': 'create question page'}, {'TaskName': 'quiz list page'}, {'TaskName': 'August 2024'}, {'TaskName': 'January 2024'}, {'TaskName': 'July 2024'}, {'TaskName': 'May 2024'}, {'TaskName': 'April 2024'}, {'TaskName': 'February 2024'}, {'TaskName': 'December 2023'}, {'TaskName': 'Result page'}, {'TaskName': 'add Form'}, {'TaskName': 'Credentials'}, {'TaskName': 'June 2024'}, {'TaskName': 'Welcome screen'}, {'TaskName': 'add question'}, {'TaskName': 'March 2024'}, {'TaskName': 'Najm Collection product description images'}, {'TaskName': 'Tabby Model Issue'}, {'TaskName': 'Meeting with JIM'}, {'TaskName': 'Box Height not match with the live theme. https://prnt.sc/uz2d-iqUgiUR'}]"
+List out all the projects that are lead by the leader name 'Rashesh Makwana'.,"{'collection': 'users', 'aggregate': [{'$match': {'Employee_Name': 'Rashesh Makwana'}}, {'$lookup': {'from': 'projects', 'localField': '_id', 'foreignField': 'LeadUserId', 'as': 'projects'}}, {'$unwind': '$projects'}, {'$project': {'projects.ProjectName': 1, '_id': 0}}]}","[{'projects': {'ProjectName': 'Cloversoftware'}}, {'projects': {'ProjectName': 'Test Task: Develop PDP'}}, {'projects': {'ProjectName': 'Tds calculater'}}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:List out all the projects that are lead by the leader name 'Rashesh Makwana'.
+###Query:
+{'collection': 'users', 'aggregate': [{'$match': {'Employee_Name': 'Rashesh Makwana'}}, {'$lookup': {'from': 'projects', 'localField': '_id', 'foreignField': 'LeadUserId', 'as': 'projects'}}, {'$unwind': '$projects'}, {'$project': {'projects.ProjectName': 1, '_id': 0}}]}
+###Response:
+[{'projects': {'ProjectName': 'Cloversoftware'}}, {'projects': {'ProjectName': 'Test Task: Develop PDP'}}, {'projects': {'ProjectName': 'Tds calculater'}}]"
+Which project category does 'Ahmad Yousuf - Hr- Expert Web developer for Shopify' belong to?,"{'collection': 'projects', 'aggregate': [{'$match': {'ProjectName': 'Ahmad Yousuf - Hr- Expert Web developer for Shopify'}}, {'$project': {'ProjectCategory': 1, '_id': 0}}]}",{'ProjectCategory': 'Shopify - Hourly'},"
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:Which project category does 'Ahmad Yousuf - Hr- Expert Web developer for Shopify' belong to?
+###Query:
+{'collection': 'projects', 'aggregate': [{'$match': {'ProjectName': 'Ahmad Yousuf - Hr- Expert Web developer for Shopify'}}, {'$project': {'ProjectCategory': 1, '_id': 0}}]}
+###Response:
+{'ProjectCategory': 'Shopify - Hourly'}"
+List out all users who have task status 'To Do',"{'collection': 'tasks', 'aggregate': [{'$lookup': {'from': 'users', 'localField': 'AssigneeUserId', 'foreignField': '_id', 'as': 'user_info'}}, {'$unwind': '$user_info'}, {'$match': {'status.text': 'To Do'}}, {'$project': {'user_info.Employee_Name': 1, 'status.text': 1, '_id': 0}}]}","[{'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Disha Patel'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Ami Dalwadi'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Disha Patel'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Ami Dalwadi'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Disha Patel'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Disha Patel'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Foram Dhanak'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Komal Vadaliya'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Ami Dalwadi'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Manthan Parmar'}}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:List out all users who have task status 'To Do'
+###Query:
+{'collection': 'tasks', 'aggregate': [{'$lookup': {'from': 'users', 'localField': 'AssigneeUserId', 'foreignField': '_id', 'as': 'user_info'}}, {'$unwind': '$user_info'}, {'$match': {'status.text': 'To Do'}}, {'$project': {'user_info.Employee_Name': 1, 'status.text': 1, '_id': 0}}]}
+###Response:
+[{'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Disha Patel'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Ami Dalwadi'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Disha Patel'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Ami Dalwadi'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Disha Patel'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Disha Patel'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Foram Dhanak'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Komal Vadaliya'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Ami Dalwadi'}}, {'status': {'text': 'To Do'}, 'user_info': {'Employee_Name': 'Manthan Parmar'}}]"
+What is the id of employee name 'Shiv Joshi'?,"{'collection': 'users', 'filter': {'Employee_Name': 'Shiv Joshi'}, 'projection': {'_id': 1}}",{'_id': '6571e715e5d066d39dd01b68'},"
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:What is the id of employee name 'Shiv Joshi'?
+###Query:
+{'collection': 'users', 'filter': {'Employee_Name': 'Shiv Joshi'}, 'projection': {'_id': 1}}
+###Response:
+{'_id': '6571e715e5d066d39dd01b68'}"
+Aggregation to Count Tasks Created in 2023,"{'collection': 'tasks', 'aggregate': [{'$match': {'createdAt': {'$gte': {'$date': '2023-01-01T00:00:00.000Z'}, '$lt': {'$date': '2024-01-01T00:00:00.000Z'}}}}, {'$count': 'total_tasks'}]}",{'total_tasks': 37992},"
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:Aggregation to Count Tasks Created in 2023
+###Query:
+{'collection': 'tasks', 'aggregate': [{'$match': {'createdAt': {'$gte': {'$date': '2023-01-01T00:00:00.000Z'}, '$lt': {'$date': '2024-01-01T00:00:00.000Z'}}}}, {'$count': 'total_tasks'}]}
+###Response:
+{'total_tasks': 37992}"
+Find the task leader for following task name 'Add Steps in the Question Preview'.,"{'collection': 'tasks', 'aggregate': [{'$match': {'TaskName': 'Add Steps in the Question Preview'}}, {'$addFields': {'Task_Leader': {'$toObjectId': '$Task_Leader'}}}, {'$lookup': {'from': 'users', 'localField': 'Task_Leader', 'foreignField': '_id', 'as': 'leader_info'}}, {'$unwind': '$leader_info'}, {'$project': {'leader_info.Employee_Name': 1, '_id': 0}}]}",{'leader_info': {'Employee_Name': 'Vivek Patel'}},"
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:Find the task leader for following task name 'Add Steps in the Question Preview'.
+###Query:
+{'collection': 'tasks', 'aggregate': [{'$match': {'TaskName': 'Add Steps in the Question Preview'}}, {'$addFields': {'Task_Leader': {'$toObjectId': '$Task_Leader'}}}, {'$lookup': {'from': 'users', 'localField': 'Task_Leader', 'foreignField': '_id', 'as': 'leader_info'}}, {'$unwind': '$leader_info'}, {'$project': {'leader_info.Employee_Name': 1, '_id': 0}}]}
+###Response:
+{'leader_info': {'Employee_Name': 'Vivek Patel'}}"
+List all employees working on 'Alian Hr module' project.,"{'collection': 'projects', 'aggregate': [{'$match': {'ProjectName': 'Alian Hr module'}}, {'$lookup': {'from': 'users', 'let': {'assignees': {'$map': {'input': '$AssigneeUserId', 'as': 'id', 'in': {'$toObjectId': '$$id'}}}}, 'pipeline': [{'$match': {'$expr': {'$in': ['$_id', '$$assignees']}}}, {'$project': {'Employee_Name': 1, '_id': 0}}], 'as': 'employees'}}, {'$unwind': '$employees'}, {'$project': {'employees.Employee_Name': 1, '_id': 0}}]}","[{'Employee_Name': 'Dhruvisha Jaiswal'}, {'Employee_Name': 'Sagar Vekariya'}, {'Employee_Name': 'Vivek Patel'}, {'Employee_Name': 'Rashesh Makwana'}, {'Employee_Name': 'Utkarshsinh Sodhaparmar'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:List all employees working on 'Alian Hr module' project.
+###Query:
+{'collection': 'projects', 'aggregate': [{'$match': {'ProjectName': 'Alian Hr module'}}, {'$lookup': {'from': 'users', 'let': {'assignees': {'$map': {'input': '$AssigneeUserId', 'as': 'id', 'in': {'$toObjectId': '$$id'}}}}, 'pipeline': [{'$match': {'$expr': {'$in': ['$_id', '$$assignees']}}}, {'$project': {'Employee_Name': 1, '_id': 0}}], 'as': 'employees'}}, {'$unwind': '$employees'}, {'$project': {'employees.Employee_Name': 1, '_id': 0}}]}
+###Response:
+[{'Employee_Name': 'Dhruvisha Jaiswal'}, {'Employee_Name': 'Sagar Vekariya'}, {'Employee_Name': 'Vivek Patel'}, {'Employee_Name': 'Rashesh Makwana'}, {'Employee_Name': 'Utkarshsinh Sodhaparmar'}]"
+Retrieve tasks under the project 'Alian Hub Design & Development' that have a 'MEDIUM' priority and were created last month.,"{'collection': 'tasks', 'filter': {'ProjectID': {'$in': [{'$lookup': {'from': 'projects', 'localField': 'ProjectID', 'foreignField': '_id', 'as': 'project_info'}}]}, 'project_info.ProjectName': 'Alian Hub Design & Development', 'Task_Priority': 'MEDIUM', 'createdAt': {'$gte': {'$date': '2025-02-01T00:00:00.000Z'}, '$lt': {'$date': '2025-03-01T00:00:00.000Z'}}}, 'projection': {'TaskName': 1, 'Task_Priority': 1, 'createdAt': 1, '_id': 0}}","[{'TaskName': 'GITEX 2024 Page Design', 'Task_Priority': 'MEDIUM', 'createdAt': '2025-02-07T04:38:15.496Z'}, {'TaskName': 'Create Design for Email Templates ALL template;s like verify, reset password, etc.', 'Task_Priority': 'MEDIUM', 'createdAt': '2025-02-17T05:38:40.200Z'}, {'TaskName': 'Required to update design at plan page', 'Task_Priority': 'MEDIUM', 'createdAt': '2025-02-17T05:44:10.996Z'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:Retrieve tasks under the project 'Alian Hub Design & Development' that have a 'MEDIUM' priority and were created last month.
+###Query:
+{'collection': 'tasks', 'filter': {'ProjectID': {'$in': [{'$lookup': {'from': 'projects', 'localField': 'ProjectID', 'foreignField': '_id', 'as': 'project_info'}}]}, 'project_info.ProjectName': 'Alian Hub Design & Development', 'Task_Priority': 'MEDIUM', 'createdAt': {'$gte': {'$date': '2025-02-01T00:00:00.000Z'}, '$lt': {'$date': '2025-03-01T00:00:00.000Z'}}}, 'projection': {'TaskName': 1, 'Task_Priority': 1, 'createdAt': 1, '_id': 0}}
+###Response:
+[{'TaskName': 'GITEX 2024 Page Design', 'Task_Priority': 'MEDIUM', 'createdAt': '2025-02-07T04:38:15.496Z'}, {'TaskName': 'Create Design for Email Templates ALL template;s like verify, reset password, etc.', 'Task_Priority': 'MEDIUM', 'createdAt': '2025-02-17T05:38:40.200Z'}, {'TaskName': 'Required to update design at plan page', 'Task_Priority': 'MEDIUM', 'createdAt': '2025-02-17T05:44:10.996Z'}]"
+How many tasks are there which status marked as 'To Do'?,"{'collection': 'tasks', 'aggregate': [{'$match': {'status.text': 'To Do'}}, {'$count': 'total_tasks'}]}",{'total_tasks': 8348},"
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:How many tasks are there which status marked as 'To Do'?
+###Query:
+{'collection': 'tasks', 'aggregate': [{'$match': {'status.text': 'To Do'}}, {'$count': 'total_tasks'}]}
+###Response:
+{'total_tasks': 8348}"

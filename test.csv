@@ -1,0 +1,64 @@
+question,query,response,text
+List out all the records whose project id is '6571e7195470e64b120328d5',"{'collection': 'tasks', 'filter': {'ProjectID': '6571e7195470e64b120328d5'}, 'projection': {'TaskName': 1, '_id': 0}}","[{'TaskName': 'Add Steps in the Question Preview'}, {'TaskName': 'Client Feedback 05/12/2023)'}, {'TaskName': 'Spacing should be as per figma https://prnt.sc/Gj0HXNeSGYZS'}, {'TaskName': 'In checkout page price is not displayed discount price if we select 3 pack'}, {'TaskName': 'Image displayed stretch https://prnt.sc/WGCayiCyRgFZ'}, {'TaskName': 'Amount should be displayed up 2 decimal value https://prnt.sc/Q2zmHXfd1JhT'}, {'TaskName': 'In export user data: date and text field is not displayed when we export https://prnt.sc/RO_PZWeax0BM'}, {'TaskName': 'Major issue : while adding queston it replace with previous questions'}, {'TaskName': 'Add space between back and icon https://prnt.sc/7amzuo8TK5t1'}, {'TaskName': 'In mobile responsive is not proper displayed for more check description'}, {'TaskName': 'User Form : Required checkbox mark is not working https://prnt.sc/46F5FAwtLFNc'}, {'TaskName': 'Question required functionality is not working'}, {'TaskName': 'In button text should be center https://prnt.sc/vJF2oK4JakCZ'}, {'TaskName': 'Question : Only first letter capital https://prnt.sc/qmSRMASF2P4X'}, {'TaskName': 'Thank You Not Found https://prnt.sc/G90E9-2rc8oo'}, {'TaskName': 'Add Question page'}, {'TaskName': 'Analytics dashBoard'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:List out all the records whose project id is '6571e7195470e64b120328d5'
+###Query:
+{'collection': 'tasks', 'filter': {'ProjectID': '6571e7195470e64b120328d5'}, 'projection': {'TaskName': 1, '_id': 0}}
+###Response:
+[{'TaskName': 'Add Steps in the Question Preview'}, {'TaskName': 'Client Feedback 05/12/2023)'}, {'TaskName': 'Spacing should be as per figma https://prnt.sc/Gj0HXNeSGYZS'}, {'TaskName': 'In checkout page price is not displayed discount price if we select 3 pack'}, {'TaskName': 'Image displayed stretch https://prnt.sc/WGCayiCyRgFZ'}, {'TaskName': 'Amount should be displayed up 2 decimal value https://prnt.sc/Q2zmHXfd1JhT'}, {'TaskName': 'In export user data: date and text field is not displayed when we export https://prnt.sc/RO_PZWeax0BM'}, {'TaskName': 'Major issue : while adding queston it replace with previous questions'}, {'TaskName': 'Add space between back and icon https://prnt.sc/7amzuo8TK5t1'}, {'TaskName': 'In mobile responsive is not proper displayed for more check description'}, {'TaskName': 'User Form : Required checkbox mark is not working https://prnt.sc/46F5FAwtLFNc'}, {'TaskName': 'Question required functionality is not working'}, {'TaskName': 'In button text should be center https://prnt.sc/vJF2oK4JakCZ'}, {'TaskName': 'Question : Only first letter capital https://prnt.sc/qmSRMASF2P4X'}, {'TaskName': 'Thank You Not Found https://prnt.sc/G90E9-2rc8oo'}, {'TaskName': 'Add Question page'}, {'TaskName': 'Analytics dashBoard'}]"
+List out all the projects that are lead by the leader id '6571e715e5d066d39dd01ae2'.,"{'collection': 'projects', 'aggregate': [{'$match': {'LeadUserId': '6571e715e5d066d39dd01ae2'}}, {'$project': {'ProjectName': 1, '_id': 0}}]}","[{'ProjectName': 'Alian Hr module'}, {'ProjectName': 'Chatbot for Alianhub'}, {'ProjectName': 'Fx - SJJA Apparel app comissionfy updates (Bruno)'}, {'ProjectName': 'Alian Infinity Accounting'}, {'ProjectName': 'Fx-Alian Sales'}, {'ProjectName': 'training reports'}, {'ProjectName': 'Alianhub support'}, {'ProjectName': 'python test task'}, {'ProjectName': 'Hr - UX/UI Developer [Stephanie Dale]'}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:List out all the projects that are lead by the leader id '6571e715e5d066d39dd01ae2'.
+###Query:
+{'collection': 'projects', 'aggregate': [{'$match': {'LeadUserId': '6571e715e5d066d39dd01ae2'}}, {'$project': {'ProjectName': 1, '_id': 0}}]}
+###Response:
+[{'ProjectName': 'Alian Hr module'}, {'ProjectName': 'Chatbot for Alianhub'}, {'ProjectName': 'Fx - SJJA Apparel app comissionfy updates (Bruno)'}, {'ProjectName': 'Alian Infinity Accounting'}, {'ProjectName': 'Fx-Alian Sales'}, {'ProjectName': 'training reports'}, {'ProjectName': 'Alianhub support'}, {'ProjectName': 'python test task'}, {'ProjectName': 'Hr - UX/UI Developer [Stephanie Dale]'}]"
+How many tasks are there by each different status?,"{'collection': 'tasks', 'aggregate': [{'$group': {'_id': '$status.text', 'count': {'$sum': 1}}}]}","[{'_id': 'Query', 'count': 2}, {'_id': 'Reviewing - Management', 'count': 3}, {'_id': 'Job Post Closed', 'count': 4}, {'_id': 'Rejected', 'count': 27}, {'_id': 'Need to Reproduce', 'count': 18}, {'_id': 'Approved', 'count': 1109}, {'_id': 'Hired Someone Else', 'count': 65}, {'_id': 'Lead', 'count': 17}, {'_id': 'Drop', 'count': 2}, {'_id': 'In Review - TL', 'count': 2544}, {'_id': 'About to Finalize', 'count': 1}, {'_id': 'Open, Not Interviewing', 'count': 1}, {'_id': 'To Do', 'count': 8348}, {'_id': 'Submit', 'count': 92}, {'_id': 'Hold | Client not respond', 'count': 61}, {'_id': 'Existing client invite', 'count': 7}, {'_id': 'Image Creation', 'count': 1}, {'_id': 'On Hold', 'count': 149}, {'_id': 'In Discussion', 'count': 37}, {'_id': 'New Lead', 'count': 10}, {'_id': 'Pending', 'count': 64}, {'_id': None, 'count': 87}, {'_id': 'No longer avail not hired', 'count': 96}, {'_id': 'Offer sent', 'count': 1}, {'_id': 'Backlog', 'count': 1017}, {'_id': 'Purchased', 'count': 6}, {'_id': 'Winner', 'count': 15}, {'_id': 'Open, Interviewing Other', 'count': 1}, {'_id': 'Hired us', 'count': 8}, {'_id': 'Interviewing - Technical', 'count': 17}, {'_id': 'Ready to Publish', 'count': 2}, {'_id': 'Invitation', 'count': 2}, {'_id': 'Done', 'count': 21732}, {'_id': 'Dropped | Awarded to Othe', 'count': 97}, {'_id': 'Demo Completed', 'count': 2}, {'_id': 'Ready For Production', 'count': 52}, {'_id': 'Join', 'count': 8}, {'_id': 'Reviewing', 'count': 2}, {'_id': 'In Progress', 'count': 1318}, {'_id': 'Hold', 'count': 1}, {'_id': 'Document Process', 'count': 4}, {'_id': 'Resolved', 'count': 19}, {'_id': 'Not Selected', 'count': 140}, {'_id': 'In Review', 'count': 875}, {'_id': 'Cancelled', 'count': 30}, {'_id': 'Complete', 'count': 28404}, {'_id': 'Code Review', 'count': 45}]","
+    You are an expert in converting English questions into MongoDB queries for the 'task_demo' database. This database contains three collections: 'tasks', 'users', and 'projects', with nested and embedded data.
+
+    **Collections Structure:**
+    - 'tasks' collection: fields like AssigneeUserId, TaskName, Status (embedded with text, key, type), ProjectID, Task_Priority, createdAt, SprintArray, Task_Leader.
+    - 'users' collection: fields like _id, Employee_FName, Employee_LName, Employee_Name, createdAt.
+    - 'projects' collection: fields like _id, AssigneeUserid, LeaderUserId, ProjectCategory, ProjectName.
+
+    **Important Rules:**
+    1. Always reference `status.text` for task status filtering (e.g., `status.text: ""Done""`).
+    2. Always use `sprintArray.folderName` for sprint folder filtering (e.g., `sprintArray.folderName: ""Development""`).
+    3. For simple field filtering, use `filter`. For aggregation, only include the aggregation pipeline—no `filter` field.
+
+    **Relationships:** Each task (tasks.AssigneeUserId) can have multiple assignees (users._id), and each task (tasks.ProjectID) belongs to one project (projects._id), with a project potentially having multiple assignees.
+
+    **Task:** Use the provided sample question and corresponding query as a reference. Only return the MongoDB query in json format, no additional details.
+### Question:How many tasks are there by each different status?
+###Query:
+{'collection': 'tasks', 'aggregate': [{'$group': {'_id': '$status.text', 'count': {'$sum': 1}}}]}
+###Response:
+[{'_id': 'Query', 'count': 2}, {'_id': 'Reviewing - Management', 'count': 3}, {'_id': 'Job Post Closed', 'count': 4}, {'_id': 'Rejected', 'count': 27}, {'_id': 'Need to Reproduce', 'count': 18}, {'_id': 'Approved', 'count': 1109}, {'_id': 'Hired Someone Else', 'count': 65}, {'_id': 'Lead', 'count': 17}, {'_id': 'Drop', 'count': 2}, {'_id': 'In Review - TL', 'count': 2544}, {'_id': 'About to Finalize', 'count': 1}, {'_id': 'Open, Not Interviewing', 'count': 1}, {'_id': 'To Do', 'count': 8348}, {'_id': 'Submit', 'count': 92}, {'_id': 'Hold | Client not respond', 'count': 61}, {'_id': 'Existing client invite', 'count': 7}, {'_id': 'Image Creation', 'count': 1}, {'_id': 'On Hold', 'count': 149}, {'_id': 'In Discussion', 'count': 37}, {'_id': 'New Lead', 'count': 10}, {'_id': 'Pending', 'count': 64}, {'_id': None, 'count': 87}, {'_id': 'No longer avail not hired', 'count': 96}, {'_id': 'Offer sent', 'count': 1}, {'_id': 'Backlog', 'count': 1017}, {'_id': 'Purchased', 'count': 6}, {'_id': 'Winner', 'count': 15}, {'_id': 'Open, Interviewing Other', 'count': 1}, {'_id': 'Hired us', 'count': 8}, {'_id': 'Interviewing - Technical', 'count': 17}, {'_id': 'Ready to Publish', 'count': 2}, {'_id': 'Invitation', 'count': 2}, {'_id': 'Done', 'count': 21732}, {'_id': 'Dropped | Awarded to Othe', 'count': 97}, {'_id': 'Demo Completed', 'count': 2}, {'_id': 'Ready For Production', 'count': 52}, {'_id': 'Join', 'count': 8}, {'_id': 'Reviewing', 'count': 2}, {'_id': 'In Progress', 'count': 1318}, {'_id': 'Hold', 'count': 1}, {'_id': 'Document Process', 'count': 4}, {'_id': 'Resolved', 'count': 19}, {'_id': 'Not Selected', 'count': 140}, {'_id': 'In Review', 'count': 875}, {'_id': 'Cancelled', 'count': 30}, {'_id': 'Complete', 'count': 28404}, {'_id': 'Code Review', 'count': 45}]"

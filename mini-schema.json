@@ -1,0 +1,35 @@
+{
+    "users": {
+        "_id" : { "type": "ObjectId", "required": true },
+        "legacyId": { "type": "String", "required": false },
+        "Employee_Email": { "type": "String", "required": false },
+        "Employee_FName": { "type": "String", "required": false },
+        "Employee_LName": { "type": "String", "required": false },
+        "Employee_Name": { "type": "String", "required": false }
+    },   
+    "tasks": {
+        "_id": { "type": "ObjectId", "required": true },
+        "legacyId": { "type": "String", "required": false },
+        "TaskName": { "type": "String", "required": true },
+        "AssigneeUserId": { "type": "Array", "default": [], "required": false },
+        "TaskType": { "type": "String", "required": true },
+        "ProjectID": { "type": "ObjectId", "required": true },
+        "status": { "type": "Object", "required": true },
+        "Task_Leader": { "type": "String", "required": true },
+        "sprintArray": { "type": "Object", "required": true },
+        "Task_Priority": { "type": "String", "required": true }
+    },
+    "projects": {
+        "_id": { "type": "ObjectId", "required": true },
+        "legacyId": { "type": "String", "required": true },
+        "AssigneeUserId": { "type": "String", "default": [], "required": false },
+        "CompanyId": { "type": "String", "required": true },
+        "LeadUserId": { "type": "Array", "default": [], "required": false },
+        "ProjectCategory": { "type": "String", "required": true },
+        "ProjectName": { "type": "String", "required": true },
+        "ProjectType": { "type": "String", "required": false },
+        "description": { "type": "String", "required": false },
+        "projectCreatedBy": { "type": "String", "required": true },
+        "sprintsfolders": { "type": "Object", "required": true }
+    }
+}
