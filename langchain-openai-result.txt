@@ -1,0 +1,1750 @@
+Talk to MongoDB
+Ask anything and get an answer
+
+Enter your question here
+
+How many tasks are there by each different status?
+
+Generated MongoDB Query:
+{
+    "collection": "tasks",
+    "aggregate": [
+        {
+            "$group": {
+                "_id": "$status.text",
+                "count": {
+                    "$sum": 1
+                }
+            }
+        }
+    ]
+}
+Query Results:
+{
+"_id":"Query"
+"count":2
+}
+{
+"_id":"Reviewing - Management"
+"count":3
+}
+{
+"_id":"Job Post Closed"
+"count":4
+}
+{
+"_id":"Rejected"
+"count":27
+}
+{
+"_id":"Need to Reproduce"
+"count":18
+}
+{
+"_id":"Approved"
+"count":1109
+}
+{
+"_id":"Hired Someone Else"
+"count":65
+}
+{
+"_id":"Lead"
+"count":17
+}
+{
+"_id":"Drop"
+"count":2
+}
+{
+"_id":"In Review - TL"
+"count":2544
+}
+{
+"_id":"About to Finalize"
+"count":1
+}
+{
+"_id":"Open, Not Interviewing"
+"count":1
+}
+{
+"_id":"To Do"
+"count":8348
+}
+{
+"_id":"Submit"
+"count":92
+}
+{
+"_id":"Hold | Client not respond"
+"count":61
+}
+{
+"_id":"Existing client invite"
+"count":7
+}
+{
+"_id":"Image Creation"
+"count":1
+}
+{
+"_id":"On Hold"
+"count":149
+}
+{
+"_id":"In Discussion"
+"count":37
+}
+{
+"_id":"New Lead"
+"count":10
+}
+{
+"_id":"Pending"
+"count":64
+}
+{
+"_id":NULL
+"count":87
+}
+{
+"_id":"No longer avail not hired"
+"count":96
+}
+{
+"_id":"Offer sent"
+"count":1
+}
+{
+"_id":"Backlog"
+"count":1017
+}
+{
+"_id":"Purchased"
+"count":6
+}
+{
+"_id":"Winner"
+"count":15
+}
+{
+"_id":"Open, Interviewing Other"
+"count":1
+}
+{
+"_id":"Hired us"
+"count":8
+}
+{
+"_id":"Interviewing - Technical"
+"count":17
+}
+{
+"_id":"Ready to Publish"
+"count":2
+}
+{
+"_id":"Invitation"
+"count":2
+}
+{
+"_id":"Done"
+"count":21732
+}
+{
+"_id":"Dropped | Awarded to Othe"
+"count":97
+}
+{
+"_id":"Demo Completed"
+"count":2
+}
+{
+"_id":"Ready For Production"
+"count":52
+}
+{
+"_id":"Join"
+"count":8
+}
+{
+"_id":"Reviewing"
+"count":2
+}
+{
+"_id":"In Progress"
+"count":1318
+}
+{
+"_id":"Hold"
+"count":1
+}
+{
+"_id":"Document Process"
+"count":4
+}
+{
+"_id":"Resolved"
+"count":19
+}
+{
+"_id":"Not Selected"
+"count":140
+}
+{
+"_id":"In Review"
+"count":875
+}
+{
+"_id":"Cancelled"
+"count":30
+}
+{
+"_id":"Complete"
+"count":28404
+}
+{
+"_id":"Code Review"
+"count":45
+}
+
+
+
+Talk to MongoDB
+Ask anything and get an answer
+
+Enter your question here
+
+how many distinct tasks are there?
+
+Generated MongoDB Query:
+{
+    "collection": "tasks",
+    "aggregate": [
+        {
+            "$group": {
+                "_id": "$TaskName"
+            }
+        },
+        {
+            "$group": {
+                "_id": null,
+                "count": {
+                    "$sum": 1
+                }
+            }
+        }
+    ]
+}
+Query Results:
+{
+"_id":NULL
+"count":54315
+}
+
+
+
+
+Talk to MongoDB
+Ask anything and get an answer
+
+Enter your question here
+
+Show all tasks assigned to '6571e715e5d066d39dd01ae6'
+
+Generated MongoDB Query:
+{
+    "collection": "tasks",
+    "filter": {
+        "AssigneeUserId": "6571e715e5d066d39dd01ae6"
+    },
+    "projection": {
+        "TaskName": 1,
+        "_id": 0
+    }
+}
+Query Results:
+{
+"TaskName":"some design changes to match the quiz frontend"
+}
+{
+"TaskName":"welcome screen"
+}
+{
+"TaskName":"Dashboard Design"
+}
+{
+"TaskName":"Next 4 changes"
+}
+{
+"TaskName":"understand requirements"
+}
+{
+"TaskName":"Product Recommendations screen design"
+}
+{
+"TaskName":"Add Quiz"
+}
+{
+"TaskName":"New changes"
+}
+{
+"TaskName":"Client feedback on the design: Admin and Result page."
+}
+{
+"TaskName":"Quiz Responses"
+}
+{
+"TaskName":"Add question"
+}
+{
+"TaskName":"Advanced filter Post Design"
+}
+{
+"TaskName":"Automation Post Design"
+}
+{
+"TaskName":"Time Tracker Post Design"
+}
+{
+"TaskName":"Updated Group By Design and add Chat in Group by"
+}
+{
+"TaskName":"Alian Hub Views Post"
+}
+{
+"TaskName":"Custom Form Post Design"
+}
+{
+"TaskName":"CodeCanyon Banners design"
+}
+{
+"TaskName":"General Setting"
+}
+{
+"TaskName":"Date Selection screen"
+}
+{
+"TaskName":"Changes in all screen"
+}
+{
+"TaskName":"Question edit screen"
+}
+{
+"TaskName":"Review Drag and drop form and moodboard"
+}
+{
+"TaskName":"Quiz Responses Screen"
+}
+{
+"TaskName":"Theme Setting"
+}
+{
+"TaskName":"Text Area screen"
+}
+{
+"TaskName":"wireframe"
+}
+{
+"TaskName":"Facebook Post Design"
+}
+{
+"TaskName":"Short Text Selection Screen"
+}
+{
+"TaskName":"Custom CSS"
+}
+{
+"TaskName":"Dropdown Screen"
+}
+{
+"TaskName":"Design Web Application"
+}
+{
+"TaskName":"thank you page"
+}
+{
+"TaskName":"range slider screen"
+}
+{
+"TaskName":"User Form"
+}
+{
+"TaskName":"React Native Vs Swift - What do you choose?"
+}
+{
+"TaskName":"A Guide To White-label Telemedicine App Development"
+}
+{
+"TaskName":"How to find the Best Mobile App Developers?"
+}
+{
+"TaskName":"Which is the best product review app for Shopify?"
+}
+{
+"TaskName":"How to sell art online?"
+}
+{
+"TaskName":"What would be the flight booking app development cost?"
+}
+{
+"TaskName":"What is the Shopify Fulfillment Network?"
+}
+{
+"TaskName":"How much would be the mobile app development cost?"
+}
+{
+"TaskName":"banner design for dribbble post"
+}
+{
+"TaskName":"How Much Does It Take to Create an app like MeWe app?"
+}
+{
+"TaskName":"sunglasses banner design for dribbble post"
+}
+{
+"TaskName":"candle banner design for dribbble post"
+}
+{
+"TaskName":"Custom Laboratory Information Management System Development"
+}
+{
+"TaskName":"Advanture banner design for dribbble post"
+}
+{
+"TaskName":"Application of Conversational AI for Payments"
+}
+{
+"TaskName":"Must-have Features in a Pharmacy Management Software"
+}
+{
+"TaskName":"What is CPG eCommerce?"
+}
+{
+"TaskName":"AI Stock Trading & Market Transformation"
+}
+{
+"TaskName":"Advantages of Metaverse in Education"
+}
+{
+"TaskName":"sleep sound machine banner design for dribbble post"
+}
+{
+"TaskName":"Benefits of integrating AI chatbots in ERP"
+}
+{
+"TaskName":"How to add Dawn theme video banner in Shopify?"
+}
+{
+"TaskName":"banner design for dribble post"
+}
+{
+"TaskName":"How to build an app like Coursera?"
+}
+{
+"TaskName":"Benefits of integrating OpenAI APIs into an app or Service"
+}
+{
+"TaskName":"Benefits of Custom Order Management Software"
+}
+{
+"TaskName":"How to Build a Successful Real Estate App?"
+}
+{
+"TaskName":"banner design for dribbble post"
+}
+{
+"TaskName":"Tips to Boost Shopify Store for new e-commerce owners"
+}
+{
+"TaskName":"pet shop banner design"
+}
+{
+"TaskName":"How To Find A CTO for Your Startup"
+}
+{
+"TaskName":"Useful QR code generator apps on Shopify"
+}
+{
+"TaskName":"Steps to migrate your online store from Opencart to Shopify"
+}
+{
+"TaskName":"dribbble post for custom product website"
+}
+{
+"TaskName":"Best Print-On-Demand Dropshipping Companies"
+}
+{
+"TaskName":"portfolio page"
+}
+{
+"TaskName":"Benefits of integrating a crypto payment gateway in Ecommerce"
+}
+{
+"TaskName":"Best Shipping Apps Available on Shopify App Store"
+}
+{
+"TaskName":"A Guide to Patient Portal App Development"
+}
+{
+"TaskName":"Is Shop Pay the best option for the Shopify Store?"
+}
+{
+"TaskName":"Printify vs Printful - A Comparison between Print-on-Demand Services"
+}
+{
+"TaskName":"An Introduction to Ghost Commerce"
+}
+{
+"TaskName":"Useful Free WordPress Plugins for your Website"
+}
+{
+"TaskName":"Update Shopify case study design content"
+}
+{
+"TaskName":"Must-Have Features In A Restaurant Finder App"
+}
+{
+"TaskName":"How can non-tech founders find and hire developers?"
+}
+{
+"TaskName":"Dribbble post Design For Cookies"
+}
+{
+"TaskName":"Which are the Klaviyo alternatives for ecommerce?"
+}
+{
+"TaskName":"An Ultimate Guide to Shopify Amazon Integration"
+}
+{
+"TaskName":"A Guide To Building A Medical Billing Software"
+}
+{
+"TaskName":"Ways to backup Shopify Store"
+}
+{
+"TaskName":"List Of 6 Best Free Shopify Themes For Your Online Store"
+}
+{
+"TaskName":"Top-Rated Customer Support Apps for Shopify Store"
+}
+{
+"TaskName":"Top Free Content Management Systems to Use in 2023"
+}
+{
+"TaskName":"What is the impact of Augmented Reality on learning?"
+}
+{
+"TaskName":"Which are the useful Shopify affiliate apps?"
+}
+{
+"TaskName":"Top Picked Migration Apps on Shopify"
+}
+{
+"TaskName":"How to create collection pages on Shopify?"
+}
+{
+"TaskName":"How to use Shopify? A Step-by-Step Guide"
+}
+{
+"TaskName":"A Guide to Shopify Image Size For Your Online Store"
+}
+{
+"TaskName":"Overview of Predictive Analytics"
+}
+{
+"TaskName":"Transform Your Clothing Store With These Shopify Themes"
+}
+{
+"TaskName":"How to find a trustworthy healthcare app development company?"
+}
+{
+"TaskName":"Why Do You Need ERM Software?"
+}
+{
+"TaskName":"Setup Guide For Countdown Timer on Shopify"
+}
+{
+"TaskName":"What do you know about Shopify Liquid?"
+}
+{
+"TaskName":"How to choose the best website builder?"
+}
+{
+"TaskName":"Why should you switch from Big Cartel to Shopify?"
+}
+{
+"TaskName":"Raksha Bandhan post design"
+}
+{
+"TaskName":"OpenCart vs Shopify - A Battle between Two E-commerce Platforms"
+}
+{
+"TaskName":"Do meta descriptions have an effect on Shopify shop rankings?"
+}
+{
+"TaskName":"Dribble post (24/8/2023)"
+}
+{
+"TaskName":"Pagecloud or Shopify - What to choose?"
+}
+{
+"TaskName":"How to Hide a Product on Shopify Store?"
+}
+{
+"TaskName":"Tips For Fixing Shopify Duplicate Content Issues"
+}
+{
+"TaskName":"Bard vs ChatGPT - Comparison between two popular AI bots"
+}
+{
+"TaskName":"A Guide to Fulfillment Services for Your Online Business"
+}
+{
+"TaskName":"Shopify Vs Pietra: A Brief Comparison For Your Online Business"
+}
+{
+"TaskName":"Krishna Janmashtami post Design"
+}
+{
+"TaskName":"What would be the cost to create an app similar to Tabby app?"
+}
+{
+"TaskName":"Shopify Payments vs Stripe - Which payment processor should you choose?"
+}
+{
+"TaskName":"Ecwid vs Shopify: What’s Best For You?"
+}
+{
+"TaskName":"social media post design for fruits from the roots"
+}
+{
+"TaskName":"Grow Your E-commerce With The Help Of Shopify Analytics"
+}
+{
+"TaskName":"Grow Your E-commerce With The Help Of Shopify Analytics"
+}
+{
+"TaskName":"Methods To Grow User Engagement In Mobile Apps"
+}
+{
+"TaskName":"Build A Mobile Application For Your Shopify Store Of Daily Consumable Products"
+}
+{
+"TaskName":"Difference Between White Hat SEO and Black Hat SEO"
+}
+{
+"TaskName":"Everything You Should Know About Native App Development"
+}
+{
+"TaskName":"Develop a social networking App Like Threads"
+}
+{
+"TaskName":"WooCommerce to Shopify Migration in easy steps"
+}
+{
+"TaskName":"Don't Make These Common Mistakes while starting a Shopify Store"
+}
+{
+"TaskName":"Boost Conversion rate with these Cross-Sell Apps on Shopify"
+}
+{
+"TaskName":"Webflow vs Shopify - Comparison between two e-commerce Platforms"
+}
+{
+"TaskName":"Develop a Real Estate App like Property Finder"
+}
+{
+"TaskName":"The Best Live Chat Apps For Shopify"
+}
+{
+"TaskName":"How To Create A Loan Management App?"
+}
+{
+"TaskName":"onboarding screen"
+}
+{
+"TaskName":"Finest Buy Now and Pay Later Apps for Online Shopping"
+}
+{
+"TaskName":"How To Develop A Language Learning App?"
+}
+{
+"TaskName":"Tips To Rank On Local Search Engine"
+}
+{
+"TaskName":"How To Do SEO For Shopify Store?"
+}
+{
+"TaskName":"Best Privy Alternatives for Shopify Store"
+}
+{
+"TaskName":"Are AI Stock Trading Apps Beneficial?"
+}
+{
+"TaskName":"Implement Fear Of Missing Out Approaches To Boost Sales"
+}
+{
+"TaskName":"How influencer marketing can help your ecommerce  store  to grow"
+}
+{
+"TaskName":"kimchi post"
+}
+{
+"TaskName":"6 Biggest Button Design mistakes Instagram post"
+}
+{
+"TaskName":"How Can You Migrate From Squarespace To Shopify?"
+}
+{
+"TaskName":"social media post design for wild card boxing"
+}
+{
+"TaskName":"Top Rated Shopify Inventory Management Applications"
+}
+{
+"TaskName":"Ways For Launching A Successful Food Delivery Business"
+}
+{
+"TaskName":"Cake Website Banner Design For Dribble Post"
+}
+{
+"TaskName":"How to Place a Test Order on Shopify?"
+}
+{
+"TaskName":"Dribbble post Banner"
+}
+{
+"TaskName":"Fonts Used by Professionals in UX Design Instagram Post"
+}
+{
+"TaskName":"Buffer Time"
+}
+{
+"TaskName":"settings"
+}
+{
+"TaskName":"reviews"
+}
+{
+"TaskName":"Driver Management"
+}
+{
+"TaskName":"User List"
+}
+{
+"TaskName":"Location Management"
+}
+{
+"TaskName":"Itinerary Management"
+}
+{
+"TaskName":"User Management"
+}
+{
+"TaskName":"Login, forgot password, reset password"
+}
+{
+"TaskName":"Contact page"
+}
+{
+"TaskName":"changes in design in all pages"
+}
+{
+"TaskName":"Product detail Page"
+}
+{
+"TaskName":"Inner Pages Design"
+}
+{
+"TaskName":"Personal Training Page Design"
+}
+{
+"TaskName":"Revision 2"
+}
+{
+"TaskName":"Product listing Page"
+}
+{
+"TaskName":"Revision 3"
+}
+{
+"TaskName":"Canella Home page Re-design"
+}
+{
+"TaskName":"New Kettlebell page design"
+}
+{
+"TaskName":"revision 1"
+}
+{
+"TaskName":"Mobile view"
+}
+{
+"TaskName":"Machine landing page"
+}
+{
+"TaskName":"Home page Design"
+}
+{
+"TaskName":"Editing images in Photoshop"
+}
+{
+"TaskName":"Create in Figma the design of a product page that contains color swatches"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"Editing YOUR Photos in Photoshop! | S1E1"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"mobile responsive design"
+}
+{
+"TaskName":"casual leave"
+}
+{
+"TaskName":"Papad Instagram Post Design"
+}
+{
+"TaskName":"Jewellery Website Design for Theme forest"
+}
+{
+"TaskName":"Contact us"
+}
+{
+"TaskName":"preparing file for themeforest upload"
+}
+{
+"TaskName":"pricing"
+}
+{
+"TaskName":"banner design for dribbble post"
+}
+{
+"TaskName":"Cosmetic Website Design for Theme forest"
+}
+{
+"TaskName":"Understanding overall Functionality and working on UI Changes/additions"
+}
+{
+"TaskName":"Vacation Leave For Holidays"
+}
+{
+"TaskName":"food website design"
+}
+{
+"TaskName":"site design"
+}
+{
+"TaskName":"cosmatic brand landing page for themeforest"
+}
+{
+"TaskName":"Guide to building a grocery delivery app"
+}
+{
+"TaskName":"Getting familiar with Shopify Backend"
+}
+{
+"TaskName":"What is Waterfall methodology?"
+}
+{
+"TaskName":"Grocery Banner Design for dribbble post"
+}
+{
+"TaskName":"banner design for dribbble post"
+}
+{
+"TaskName":"What is the difference between SQL and T-SQL? - Blog Images Design"
+}
+{
+"TaskName":"Learning Blender software for create 3d objects"
+}
+{
+"TaskName":"Meditation banner design for dribbble post"
+}
+{
+"TaskName":"Cost Guide to Develop a Parking App like Spot Hero"
+}
+{
+"TaskName":"dance Academy first fold design for dribbble post"
+}
+{
+"TaskName":"travel agency banner design"
+}
+{
+"TaskName":"Wild Animal Welfare NGO's Banner design"
+}
+{
+"TaskName":"Organic food for pet Website Banner Design for Dribbble Post"
+}
+{
+"TaskName":"About Us page design"
+}
+{
+"TaskName":"creative design agency first fold design"
+}
+{
+"TaskName":"add content"
+}
+{
+"TaskName":"papad instagram post design"
+}
+{
+"TaskName":"Timeline Section Redesign"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"quiz changes"
+}
+{
+"TaskName":"Alian Hub Document for Installation"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"Home Page Design Option 1"
+}
+{
+"TaskName":"Types of Project Documentation"
+}
+{
+"TaskName":"How to make Uber like app?"
+}
+{
+"TaskName":"About My Computer"
+}
+{
+"TaskName":"Benefits of cloud-based application development"
+}
+{
+"TaskName":"Is Microservices Architecture useful for SaaS product development?"
+}
+{
+"TaskName":"banner image design"
+}
+{
+"TaskName":"Business consulting Design"
+}
+{
+"TaskName":"Mobile Responsive Design"
+}
+{
+"TaskName":"Thumbnail view design"
+}
+{
+"TaskName":"discussion on stall banner design"
+}
+{
+"TaskName":"Ram Navami Social media post"
+}
+{
+"TaskName":"Services inner page And Mobile Responsive for business Consulting Design"
+}
+{
+"TaskName":"watching videos in You Tube  about Designing"
+}
+{
+"TaskName":"Home Page design"
+}
+{
+"TaskName":"sick leave on 15th april"
+}
+{
+"TaskName":"Chat"
+}
+{
+"TaskName":"change the colorscheme"
+}
+{
+"TaskName":"mobile responsive  design"
+}
+{
+"TaskName":"revision 2"
+}
+{
+"TaskName":"revision 3"
+}
+{
+"TaskName":"revision4"
+}
+{
+"TaskName":"revision 6"
+}
+{
+"TaskName":"About us page"
+}
+{
+"TaskName":"Product Listing page"
+}
+{
+"TaskName":"product detail page"
+}
+{
+"TaskName":"blog page"
+}
+{
+"TaskName":"blog detail page"
+}
+{
+"TaskName":"contact us page"
+}
+{
+"TaskName":"updating inner pages"
+}
+{
+"TaskName":"Review Website Design & Add Comment In Figma"
+}
+{
+"TaskName":"updating business consulting design for Themeforest"
+}
+{
+"TaskName":"Updating business consulting mobile responsive design for Themeforest"
+}
+{
+"TaskName":"revision 2"
+}
+{
+"TaskName":"Meteorological Agency website Banner design"
+}
+{
+"TaskName":"Musical instruments Website banner Design for Dribbble post"
+}
+{
+"TaskName":"Clothing Brand website banner design"
+}
+{
+"TaskName":"Wedding Dresses website banner design"
+}
+{
+"TaskName":"UI/UX Design Fiverr gig image design - Eathyellow"
+}
+{
+"TaskName":"fiverr profile update- earthyellow"
+}
+{
+"TaskName":"Future farming Technologies First Fold Design"
+}
+{
+"TaskName":"mobile Responsive Design for Beastjuice wellness website"
+}
+{
+"TaskName":"Men's Salon website banner Design for Dribbble post"
+}
+{
+"TaskName":"Hero Section"
+}
+{
+"TaskName":"Online Cooking Learning Website banner design for dribbble post"
+}
+{
+"TaskName":"finding subject for dribbble post"
+}
+{
+"TaskName":"Kids Toys Website banner design for dribbble post"
+}
+{
+"TaskName":"Finding Subject For Dribbble post"
+}
+{
+"TaskName":"blender tutorial For Beginners - part 1"
+}
+{
+"TaskName":"Blender Tutorial (episode 1)"
+}
+{
+"TaskName":"Blender Tutorial (episode 2)"
+}
+{
+"TaskName":"Blender Tutorial (episode 3)"
+}
+{
+"TaskName":"BL-21 Blender Tutorial (episode 4)"
+}
+{
+"TaskName":"BL-21 Blender Tutorial (episode 5)"
+}
+{
+"TaskName":"BL-21 Blender Tutorial (episode 6)"
+}
+{
+"TaskName":"Blender Tutorial (episode 7)"
+}
+{
+"TaskName":"Blender Tutorial (episode 8)"
+}
+{
+"TaskName":"Blender Tutorial (episode 9)"
+}
+{
+"TaskName":"updated fiverr gig banner design for landing page"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Need-developers-and-span-class-highlight-designer-span-for-financial-application_~01c3b07bc49f5d1f5d/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Logo-redesign_~012bd3629fc32a5314/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Graphic-Designer-for-LinkedIn-Posts-Carousels-and-Thumbnails_~0187beff4afcaeb7e1/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/High-quality-product-photo-enhancement_~01681630be9f013912/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/High-quality-product-photo-enhancement_~01681630be9f013912/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Figma-Website-Design_~012fe56549f4bd2f6e/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Figma-Website-Design_~012fe56549f4bd2f6e/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Social-Media-Design_~01d72a68dae0f6829e/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Social-Media-Design_~01d72a68dae0f6829e/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Designer-for-iOS-App_~01e31023e07b5384c1/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Graphic-Designer-for-Campaign_~01b4039eed9667b2f2/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Designer-for-App-Mockup_~01a6c9062475a4d1e3/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Seeking-experience-Expert-revamp-website-components_~01a840be396942bfb5/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Figma-Designer-for-Website-Wireframes-Urgent_~0107e99113a94f226d/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/~010ee81591d6749e86?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2Fdetails%2F~010ee81591d6749e86"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/~0109e4e00e96a9d10b?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2Fdetails%2F~0109e4e00e96a9d10b"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Designer-for-Marketing-Data-Platform-real-estate_~01044974bda33ee7ba/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Designer_~01463f97d0487a01d0/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Designer-for-Cross-Platform-Application_~01aa257807b1628f08/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/iOS-app_~014bac37f11a4c31f6/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Experienced-Product-Designer-for-SaaS-Admin-Dashboard_~01e3098dbf7d1b9dd8/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Designer-Figma-SaaS-Experience_~01d869c8772ca3eda1/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/~01ce31c0f64f1255a0?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2Fdetails%2F~01ce31c0f64f1255a0"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Experienced-Designer-Needed_~017d1b9d75ef938ee2/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"10 social media posts"
+}
+{
+"TaskName":"1 social media banner for facebook"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/span-class-highlight-span-span-class-highlight-span-span-class-highlight-designer-span-full-time-500-per-month_~01ec7c794259d94e75"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/span-class-highlight-span-span-class-highlight-span-span-class-highlight-Designer-span-for-SAAS-Website-Redesign_~015c37bc83bf755382"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Designer-with-Expertise-Google-Material_~01e2427f944fb61d5b/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Web-designer-for-logistics-company-Experienced-only_~014fc3f97c459efd2c/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Figma-mobile-designer-for-navigation-app_~01a11316b4e5505e32/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/~01e91abae1879a3e31"
+}
+{
+"TaskName":"1 post with all the gummies"
+}
+{
+"TaskName":"1 post with the two protein powders"
+}
+{
+"TaskName":"1 post with villian arc"
+}
+{
+"TaskName":"1 post with sea moss capsules"
+}
+{
+"TaskName":"1 post with multivitamin"
+}
+{
+"TaskName":"1 post with 4 energy powders"
+}
+{
+"TaskName":"1 post with womens products"
+}
+{
+"TaskName":"1 post with superfood powders"
+}
+{
+"TaskName":"1 post with performance products"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Experienced-Graphic-Designer_~01649f0de3da501742/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Photography-span-class-highlight-Editor-span_~0176fc6a24a7c3ce6b/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Graphic-Designer-Needed-for-High-End-Furniture-and-Decor-Stores_~017c207aa382fe2f63/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/span-class-highlight-Figma-span-Design-for-new-website_~01e1d2099210ca7096/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/New-company-need-logo-name-app-wireframe-and-website-design_~0158857bc6d9d98d32"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Long-Term-Web-Designer-Figma_~01dc001bd6f564342b/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/design_~019452861d173f156b/?referrer_url_path=find_work_home"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Designer_~0152131dd9df901a0f/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Website-mockup-needed_~01d635a771b8bfcc8d/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/designer-Mobile-App_~01024a6d2e0b7aec04/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Highly-creative-designer_~013db6250f6821034d/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"Create upwork profile banner image"
+}
+{
+"TaskName":"Banner image - 2"
+}
+{
+"TaskName":"https://www.upwork.com/jobs/Designer-Commerce-Website-Project_~015e7eecc532452300/?referrer_url_path=%2Fnx%2Fsearch%2Fjobs%2F"
+}
+{
+"TaskName":"Rahul's Profile"
+}
+{
+"TaskName":"Nishant's Profile"
+}
+{
+"TaskName":"Foram's Profile"
+}
+{
+"TaskName":"You will get a Responsive Web Application Design with Modern Features"
+}
+{
+"TaskName":"You will get a Custom Admin Dashboard Designed for Efficiency"
+}
+{
+"TaskName":"You will get a User-Centered Website Redesign for Improved Engagement"
+}
+{
+"TaskName":"You will get a Mobile App Prototype That Captures Your Vision"
+}
+{
+"TaskName":"You will get a Feature-Rich Web Application Tailored to Your Requirements"
+}
+{
+"TaskName":"You will get a Custom Admin Dashboard That Enhances Decision-Making"
+}
+{
+"TaskName":"You will get a Website Redesign That Boosts Conversion Rates"
+}
+{
+"TaskName":"You will get a Mobile App Prototype with Intuitive Navigation"
+}
+{
+"TaskName":"You will get a Web App UI/UX Design for Enhanced Usability"
+}
+{
+"TaskName":"You will get an Admin Dashboard Redesign for Improved Efficiency"
+}
+{
+"TaskName":"You will get a Responsive Website Design That Works Across Devices"
+}
+{
+"TaskName":"You will get a Mobile App UI Refresh to Impress Your Users"
+}
+{
+"TaskName":"You will get a Scalable Web Application Design with Future Growth in Mind"
+}
+{
+"TaskName":"You will get an Admin Panel That Simplifies Complex Operations"
+}
+{
+"TaskName":"You will get a Website Revamp That Aligns with Current Design Trends"
+}
+{
+"TaskName":"You will get a Mobile App UI Design That Reflects Your Brand Identity"
+}
+{
+"TaskName":"You will get a Web Application Interface That Drives User Engagement"
+}
+{
+"TaskName":"You will get an Admin Dashboard Optimized for Data Visualization"
+}
+{
+"TaskName":"You will get a Custom Website Design That Stands Out in Your Industry"
+}
+{
+"TaskName":"You will get a Mobile App Prototype with Enhanced User Experience"
+}
+{
+"TaskName":"You will get a Web Application Design That Prioritizes Security"
+}
+{
+"TaskName":"You will get an Admin Panel Redesign for Improved Workflow"
+}
+{
+"TaskName":"You will get a Website Interface That Converts Visitors into Customers"
+}
+{
+"TaskName":"You will get a Mobile App UI/UX Refresh to Delight Your Audience"
+}
+{
+"TaskName":"Infinity Brochure Design"
+}
+{
+"TaskName":"revision on posts"
+}
+{
+"TaskName":"Post for Organic sea moss"
+}
+{
+"TaskName":"Post for pre workout powder"
+}
+{
+"TaskName":"post with superfood powders"
+}
+{
+"TaskName":"Vasu's profile"
+}
+{
+"TaskName":"You will get Banner Ads and Web Graphics"
+}
+{
+"TaskName":"You will get Professional Photo Retouching Services"
+}
+{
+"TaskName":"You will get High-Quality Business Card Designs"
+}
+{
+"TaskName":"Heet's profile"
+}
+{
+"TaskName":"You will get Professional Brochure Design Services"
+}
+{
+"TaskName":"You will get Custom Flyer Designs that Impress"
+}
+{
+"TaskName":"You will get Eye-Catching Logo Designs"
+}
+{
+"TaskName":"You will get Branding Expertise for Your Business"
+}
+{
+"TaskName":"You will get Stunning Visiting Card Designs"
+}
+{
+"TaskName":"You will get Professional Image Editing Services"
+}
+{
+"TaskName":"You will get Creative Banner Design Solutions"
+}
+{
+"TaskName":"You will get Unique Social Media Graphics"
+}
+{
+"TaskName":"You will get Magazine Layout and Design"
+}
+{
+"TaskName":"You will get eBook Cover and Interior Design"
+}
+{
+"TaskName":"You will get Packaging Label Design Services"
+}
+{
+"TaskName":"You will get Custom Illustrations for Books"
+}
+{
+"TaskName":"Home Page Design Option 1"
+}
+{
+"TaskName":"Home Page Design Option 2"
+}
+{
+"TaskName":"Update Home page -1 content"
+}
+{
+"TaskName":"Update Home page -2 content"
+}
+{
+"TaskName":"update home page design banner section"
+}
+{
+"TaskName":"About Us section"
+}
+{
+"TaskName":"update banner section"
+}
+{
+"TaskName":"About us section"
+}
+{
+"TaskName":"Home Page Design Changes R2"
+}
+{
+"TaskName":"Header"
+}
+{
+"TaskName":"Footer"
+}
+{
+"TaskName":"Create Shopify Components"
+}
+{
+"TaskName":"Slider Image Design for Banner Section"
+}
+{
+"TaskName":"Home Page Design Changes"
+}
+{
+"TaskName":"Home Page Design Changes"
+}
+{
+"TaskName":"Social Media Ad Design"
+}
+{
+"TaskName":"Product Detail page"
+}
+{
+"TaskName":"Product listing page"
+}
+{
+"TaskName":"Blog listing And Blog Detail page"
+}
+{
+"TaskName":"About us & Contact us page"
+}
+{
+"TaskName":"wheat grass"
+}
+{
+"TaskName":"Cart page"
+}
+{
+"TaskName":"task management App design"
+}
+{
+"TaskName":"Apply For Disability Page Design"
+}
+{
+"TaskName":"Appeal Your Disability Denial"
+}
+{
+"TaskName":"PL Leaves Application"
+}
+{
+"TaskName":"Linkedin Post Design"
+}
+{
+"TaskName":"Home page Redesign"
+}
+{
+"TaskName":"App Design Changes"
+}
+{
+"TaskName":"product listing page"
+}
+{
+"TaskName":"Inner Page Design"
+}
+
+
+Talk to MongoDB
+Ask anything and get an answer
+
+Enter your question here
+
+Find all tasks with status "To Do"
+
+Generated MongoDB Query:
+{
+    "collection": "tasks",
+    "filter": {
+        "status.text": "To Do"
+    },
+    "projection": {
+        "TaskName": 1,
+        "_id": 0
+    }
+}
+Query Results:
+{
+"TaskName":"create quiz welcome page"
+}
+{
+"TaskName":"create question page"
+}
+{
+"TaskName":"quiz list page"
+}
+{
+"TaskName":"August 2024"
+}
+{
+"TaskName":"January 2024"
+}
+{
+"TaskName":"July 2024"
+}
+{
+"TaskName":"May 2024"
+}
+{
+"TaskName":"April 2024"
+}
+{
+"TaskName":"February 2024"
+}
+{
+"TaskName":"December 2023"
+}
+{
+"TaskName":"Result page"
+}
+{
+"TaskName":"add Form"
+}
+{
+"TaskName":"Credentials"
+}
+{
+"TaskName":"June 2024"
+}
+{
+"TaskName":"Welcome screen"
+}
+{
+"TaskName":"add question"
+}
+{
+"TaskName":"March 2024"
+}
+{
+"TaskName":"Najm Collection product description images"
+}
+{
+"TaskName":"Tabby Model Issue"
+}
+{
+"TaskName":"Meeting with JIM"
+}
+{
+"TaskName":"Box Height not match with the live theme. https://prnt.sc/uz2d-iqUgiUR"
+}
+
+
+etc...
+
+
+Talk to MongoDB
+Ask anything and get an answer
+
+Enter your question here
+
+How many tasks are there which status marked as 'To Do'?
+
+Generated MongoDB Query:
+{
+    "collection": "tasks",
+    "aggregate": [
+        {
+            "$match": {
+                "status.text": "To Do"
+            }
+        },
+        {
+            "$count": "total_tasks"
+        }
+    ]
+}
+Query Results:
+{
+"total_tasks":8348
+}
+
+
+
+Talk to MongoDB
+Ask anything and get an answer
+
+Enter your question here
+
+list all the task of 'Shiv Joshi' which status marked as 'In Progress'
+
+Generated MongoDB Query:
+{
+    "collection": "tasks",
+    "aggregate": [
+        {
+            "$lookup": {
+                "from": "users",
+                "localField": "AssigneeUserId",
+                "foreignField": "_id",
+                "as": "user_info"
+            }
+        },
+        {
+            "$unwind": "$user_info"
+        },
+        {
+            "$match": {
+                "user_info.Employee_Name": "Shiv Joshi",
+                "status.text": "In Progress"
+            }
+        },
+        {
+            "$project": {
+                "TaskName": 1,
+                "_id": 0
+            }
+        }
+    ]
+}
+Query Results:
+{
+"TaskName":"Audio record limit"
+}
+{
+"TaskName":"Snapshot optimization"
+}
+{
+"TaskName":"Additional 2: Create and sent certificate as per attached"
+}
+{
+"TaskName":"fvrduirghsbvsgbjfughyrf"
+}
+
+
+Talk to MongoDB
+Ask anything and get an answer
+
+Enter your question here
+
+List out the employee whose last name is 'Joshi'
+
+Generated MongoDB Query:
+{
+    "collection": "users",
+    "filter": {
+        "Employee_LName": "Joshi"
+    },
+    "projection": {
+        "Employee_Name": 1,
+        "_id": 0
+    }
+}
+Query Results:
+{
+"Employee_Name":"Shiv Joshi"
+}
+{
+"Employee_Name":"Viren Joshi"
+}
+{
+"Employee_Name":"Abhishek Joshi"
+}
+{
+"Employee_Name":"Vikas Joshi"
+}
+
+
+Talk to MongoDB
+Ask anything and get an answer
+
+Enter your question here
+
+List out the employee whose name contains 'Dhru'
+
+Generated MongoDB Query:
+{
+    "collection": "users",
+    "filter": {
+        "Employee_Name": {
+            "$regex": "Dhru",
+            "$options": "i"
+        }
+    },
+    "projection": {
+        "Employee_Name": 1,
+        "_id": 1
+    }
+}
+Query Results:
+{
+"_id":"ObjectId('6571e71510b21a03ef44f3e7')"
+"Employee_Name":"Dhruvisha Jaiswal"
+}
+{
+"_id":"ObjectId('6571e71690622593f7e24fc1')"
+"Employee_Name":"Dhrupal Gajjar"
+}
+{
+"_id":"ObjectId('6774d29c52902067236510d1')"
+"Employee_Name":"Dhruv Rangani"
+}
